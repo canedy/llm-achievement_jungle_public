@@ -6,7 +6,7 @@ const HomePage = () => {
     <>
       <div className="w-screen h-screen bg-black flex justify-center items-center text-white">
         <div className="w-full max-w-4xl mx-auto">
-          <h1 className="text-6xl mb-6">Empower your path to excellence</h1>
+          <h1 className="text-6xl mb-6">Empower Your Path to Excellence</h1>
           <h2 className="text-2xl text-white/60 mb-6">Employee Review Co-pilot is designed to help managers and employees 
             conduct performance reviews by providing a holistic, accurate view of contributions, achievements, and areas 
             of development over a span of a year. This platform aims to make annual reviews more actionable, meaningful, and objectiv
@@ -14,7 +14,7 @@ const HomePage = () => {
           </h2>
       
           <div>
-            <Link to={routes.home()} className="bg-blue-600 px-4 py-2 rounded-lg text-xl">get started</Link>
+            <Link to={routes.signup()} className="bg-blue-600 px-4 py-2 rounded-lg text-xl">get started</Link>
             
           </div>
         </div>

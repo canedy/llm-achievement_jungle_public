@@ -4558,6 +4558,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@redwoodjs/auth-supabase-api@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-supabase-api@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    core-js: 3.32.0
+    jsonwebtoken: 9.0.0
+  checksum: 739b64161e689e6e501c3b0b4dd527ce9939c61f1b9f36e76174e68b868c0ac5d93dca0220dc5cdef155edc92c77ad47dc741c62873077f21b2817818047b074
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-supabase-setup@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-supabase-setup@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    "@redwoodjs/cli-helpers": 6.1.0
+    core-js: 3.32.0
+  checksum: ad743284a378de5576472f85c0763fc428b7f4b719923d95504ac64af30771f55dfd1593dc3c5851ec2da39772d568dcfd63afdfe3c589e61c06937cec26ace2
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-supabase-web@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@redwoodjs/auth-supabase-web@npm:6.1.0"
+  dependencies:
+    "@babel/runtime-corejs3": 7.22.10
+    core-js: 3.32.0
+  peerDependencies:
+    "@supabase/supabase-js": 2.26.0
+  checksum: abd774b2ca4b1bdc32aa586a64265846f6b16da37a0000e15f400d4b35ef7231a39c9e8753043222a38d957e12138f81285c35729c1af33b0f6fb14afee9a9e7
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/auth@npm:6.1.0":
   version: 6.1.0
   resolution: "@redwoodjs/auth@npm:6.1.0"
@@ -5128,6 +5162,67 @@ __metadata:
   dependencies:
     "@sinonjs/commons": ^3.0.0
   checksum: 2e2fb6cc57f227912814085b7b01fede050cd4746ea8d49a1e44d5a0e56a804663b0340ae2f11af7559ea9bf4d087a11f2f646197a660ea3cb04e19efc04aa63
+  languageName: node
+  linkType: hard
+
+"@supabase/functions-js@npm:^2.1.0":
+  version: 2.1.2
+  resolution: "@supabase/functions-js@npm:2.1.2"
+  dependencies:
+    cross-fetch: ^3.1.5
+  checksum: fe35d1a145570c83d33c3f09148b0d7448b0d78e8a55da38b7d7ba3d22d6373303cf23a5c19d8a8dcc98f53f4247de2cb831923e6aff6bdc9cf2aa2e58ce7335
+  languageName: node
+  linkType: hard
+
+"@supabase/gotrue-js@npm:^2.46.1":
+  version: 2.47.0
+  resolution: "@supabase/gotrue-js@npm:2.47.0"
+  dependencies:
+    cross-fetch: ^3.1.5
+  checksum: 3732e6b3f602cf168c79ab6c7b861329ace4592c8f919088597f07236cb16ffc769454d5563722da5f3cb5ebfd00edfe7802ec1ca3b523d797183cb4a9475352
+  languageName: node
+  linkType: hard
+
+"@supabase/postgrest-js@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@supabase/postgrest-js@npm:1.8.0"
+  dependencies:
+    cross-fetch: ^3.1.5
+  checksum: e73e7430aea59e381681799187dada751fe47542e29bc30fcfe4264d6703a9b5b8a87049e477e0a64eaacc6c955f92dc368b81e319e76d46d4e9b24a9068e41d
+  languageName: node
+  linkType: hard
+
+"@supabase/realtime-js@npm:^2.7.4":
+  version: 2.7.4
+  resolution: "@supabase/realtime-js@npm:2.7.4"
+  dependencies:
+    "@types/phoenix": ^1.5.4
+    "@types/websocket": ^1.0.3
+    websocket: ^1.0.34
+  checksum: c589736dd537f4c27fd8f0b6ecd71b28cc1d254eeac22c8c4444cf7229be54c9c0e81e4e9850f6075737810176d603772a243b2593215d965de83a2bde81441b
+  languageName: node
+  linkType: hard
+
+"@supabase/storage-js@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "@supabase/storage-js@npm:2.5.1"
+  dependencies:
+    cross-fetch: ^3.1.5
+  checksum: 522875344341477a80c13b9aa845563fd2b0098cfe2e99d9b297d53640f16f234c1938b0fa161ae429947a1489be6816d7bb6394fb3b06bb44c537714c4a41a8
+  languageName: node
+  linkType: hard
+
+"@supabase/supabase-js@npm:^2":
+  version: 2.33.1
+  resolution: "@supabase/supabase-js@npm:2.33.1"
+  dependencies:
+    "@supabase/functions-js": ^2.1.0
+    "@supabase/gotrue-js": ^2.46.1
+    "@supabase/postgrest-js": ^1.8.0
+    "@supabase/realtime-js": ^2.7.4
+    "@supabase/storage-js": ^2.5.1
+    cross-fetch: ^3.1.5
+  checksum: eeed58b50ceb61886c1fb4cbe31fe2a806889c75166fa0ac4473547acec545d55f796dcae70db155e7173ff6df4951e0a40ac164dff03546e09c63f0c5fc2494
   languageName: node
   linkType: hard
 
@@ -5740,6 +5835,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/phoenix@npm:^1.5.4":
+  version: 1.6.0
+  resolution: "@types/phoenix@npm:1.6.0"
+  checksum: 5c3caf2028423b584680bf839b2579c4369a3c1388d33dbf9a8354be8b74c6357cba045f9a1ea32f92d5a6f6c78375c3e275a1d363fbf289aef50a2eea0d8748
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
@@ -5924,6 +6026,15 @@ __metadata:
     tapable: ^2.2.0
     webpack: ^5
   checksum: 6c11713b1543b8f29a78a6cfddb738a4408cbef82f67b96bab7aa495c5bb22cb2a8c8b179a0beefa3faa4c5e5a37e5ff7dee1ac38bd10a9b29d15d5f2f3575be
+  languageName: node
+  linkType: hard
+
+"@types/websocket@npm:^1.0.3":
+  version: 1.0.5
+  resolution: "@types/websocket@npm:1.0.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: 866f31a394d4fbcb4055420daaec16096e42666e30c573ca4291fc7fcde8316eb2ab4995f7f21c6e5e37572bcbf72483d8a6d340db303c6c2fcbbf79377b8b5a
   languageName: node
   linkType: hard
 
@@ -6946,6 +7057,7 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@redwoodjs/api": 6.1.0
+    "@redwoodjs/auth-supabase-api": 6.1.0
     "@redwoodjs/graphql-server": 6.1.0
   languageName: unknown
   linkType: soft
@@ -8049,6 +8161,16 @@ __metadata:
     base64-js: ^1.3.1
     ieee754: ^1.1.13
   checksum: 27cac81cff434ed2876058d72e7c4789d11ff1120ef32c9de48f59eab58179b66710c488987d295ae89a228f835fc66d088652dffeb8e3ba8659f80eb091d55e
+  languageName: node
+  linkType: hard
+
+"bufferutil@npm:^4.0.1":
+  version: 4.0.7
+  resolution: "bufferutil@npm:4.0.7"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: 48d6cf98b9c227db65f0a1062b6c80e933c43dc03e0ad5f908da0e79cc87a633c215516f4d541ca9b0e09c1fb386f1bbe1fc2de913057f0201d14798d3e0c2bb
   languageName: node
   linkType: hard
 
@@ -9505,6 +9627,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"d@npm:1, d@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "d@npm:1.0.1"
+  dependencies:
+    es5-ext: ^0.10.50
+    type: ^1.0.1
+  checksum: 1fedcb3b956a461f64d86b94b347441beff5cef8910b6ac4ec509a2c67eeaa7093660a98b26601ac91f91260238add73bdf25867a9c0cb783774642bc4c1523f
+  languageName: node
+  linkType: hard
+
 "damerau-levenshtein@npm:^1.0.8":
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
@@ -10467,6 +10599,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"es5-ext@npm:^0.10.35, es5-ext@npm:^0.10.50":
+  version: 0.10.62
+  resolution: "es5-ext@npm:0.10.62"
+  dependencies:
+    es6-iterator: ^2.0.3
+    es6-symbol: ^3.1.3
+    next-tick: ^1.1.0
+  checksum: 72dfbec5e4bce24754be9f2c2a1c67c01de3fe000103c115f52891f6a51f44a59674c40a1f6bd2390fcd43987746dccb76efafea91c7bb6295bdca8d63ba3db4
+  languageName: node
+  linkType: hard
+
+"es6-iterator@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "es6-iterator@npm:2.0.3"
+  dependencies:
+    d: 1
+    es5-ext: ^0.10.35
+    es6-symbol: ^3.1.1
+  checksum: 91f20b799dba28fb05bf623c31857fc1524a0f1c444903beccaf8929ad196c8c9ded233e5ac7214fc63a92b3f25b64b7f2737fcca8b1f92d2d96cf3ac902f5d8
+  languageName: node
+  linkType: hard
+
+"es6-symbol@npm:^3.1.1, es6-symbol@npm:^3.1.3":
+  version: 3.1.3
+  resolution: "es6-symbol@npm:3.1.3"
+  dependencies:
+    d: ^1.0.1
+    ext: ^1.1.2
+  checksum: 22982f815f00df553a89f4fb74c5048fed85df598482b4bd38dbd173174247949c72982a7d7132a58b147525398400e5f182db59b0916cb49f1e245fb0e22233
+  languageName: node
+  linkType: hard
+
 "esbuild@npm:0.18.19":
   version: 0.18.19
   resolution: "esbuild@npm:0.18.19"
@@ -11145,6 +11309,15 @@ __metadata:
     utils-merge: 1.0.1
     vary: ~1.1.2
   checksum: 75af556306b9241bc1d7bdd40c9744b516c38ce50ae3210658efcbf96e3aed4ab83b3432f06215eae5610c123bc4136957dc06e50dfc50b7d4d775af56c4c59c
+  languageName: node
+  linkType: hard
+
+"ext@npm:^1.1.2":
+  version: 1.7.0
+  resolution: "ext@npm:1.7.0"
+  dependencies:
+    type: ^2.7.2
+  checksum: a8e5f34e12214e9eee3a4af3b5c9d05ba048f28996450975b369fc86e5d0ef13b6df0615f892f5396a9c65d616213c25ec5b0ad17ef42eac4a500512a19da6c7
   languageName: node
   linkType: hard
 
@@ -13447,6 +13620,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-typedarray@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "is-typedarray@npm:1.0.0"
+  checksum: 4c096275ba041a17a13cca33ac21c16bc4fd2d7d7eb94525e7cd2c2f2c1a3ab956e37622290642501ff4310601e413b675cf399ad6db49855527d2163b3eeeec
+  languageName: node
+  linkType: hard
+
 "is-unc-path@npm:^1.0.0":
   version: 1.0.0
   resolution: "is-unc-path@npm:1.0.0"
@@ -15651,6 +15831,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-tick@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "next-tick@npm:1.1.0"
+  checksum: 3ba80dd805fcb336b4f52e010992f3e6175869c8d88bf4ff0a81d5d66e6049f89993463b28211613e58a6b7fe93ff5ccbba0da18d4fa574b96289e8f0b577f28
+  languageName: node
+  linkType: hard
+
 "no-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "no-case@npm:3.0.4"
@@ -15705,6 +15892,17 @@ __metadata:
   version: 1.3.1
   resolution: "node-forge@npm:1.3.1"
   checksum: e882819b251a4321f9fc1d67c85d1501d3004b4ee889af822fd07f64de3d1a8e272ff00b689570af0465d65d6bf5074df9c76e900e0aff23e60b847f2a46fbe8
+  languageName: node
+  linkType: hard
+
+"node-gyp-build@npm:^4.3.0":
+  version: 4.6.0
+  resolution: "node-gyp-build@npm:4.6.0"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: 147add65942acd3cf641d11d9becd030128c7298a5b4aec4ebf3ad4afcc3d0298ad2562afba3e7b2bf70160c5e2e82235e3bc043ff9c52dc68bdd36c856764fe
   languageName: node
   linkType: hard
 
@@ -18389,6 +18587,7 @@ __metadata:
   dependencies:
     "@headlessui/react": ^1.7.17
     "@heroicons/react": ^2.0.18
+    "@redwoodjs/auth-supabase-setup": 6.1.0
     "@redwoodjs/core": 6.1.0
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.5
@@ -20328,6 +20527,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"type@npm:^1.0.1":
+  version: 1.2.0
+  resolution: "type@npm:1.2.0"
+  checksum: 444660849aaebef8cbb9bc43b28ec2068952064cfce6a646f88db97aaa2e2d6570c5629cd79238b71ba23aa3f75146a0b96e24e198210ee0089715a6f8889bf7
+  languageName: node
+  linkType: hard
+
+"type@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "type@npm:2.7.2"
+  checksum: 84c2382788fe24e0bc3d64c0c181820048f672b0f06316aa9c7bdb373f8a09f8b5404f4e856bc4539fb931f2f08f2adc4c53f6c08c9c0314505d70c29a1289e1
+  languageName: node
+  linkType: hard
+
 "typed-array-buffer@npm:^1.0.0":
   version: 1.0.0
   resolution: "typed-array-buffer@npm:1.0.0"
@@ -20372,6 +20585,15 @@ __metadata:
     for-each: ^0.3.3
     is-typed-array: ^1.1.9
   checksum: c5163c0103d07fefc8a2ad0fc151f9ca9a1f6422098c00f695d55f9896e4d63614cd62cf8d8a031c6cee5f418e8980a533796597174da4edff075b3d275a7e23
+  languageName: node
+  linkType: hard
+
+"typedarray-to-buffer@npm:^3.1.5":
+  version: 3.1.5
+  resolution: "typedarray-to-buffer@npm:3.1.5"
+  dependencies:
+    is-typedarray: ^1.0.0
+  checksum: 4ac5b7a93d604edabf3ac58d3a2f7e07487e9f6e98195a080e81dbffdc4127817f470f219d794a843b87052cedef102b53ac9b539855380b8c2172054b7d5027
   languageName: node
   linkType: hard
 
@@ -20703,6 +20925,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"utf-8-validate@npm:^5.0.2":
+  version: 5.0.10
+  resolution: "utf-8-validate@npm:5.0.10"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: 23cd6adc29e6901aa37ff97ce4b81be9238d0023c5e217515b34792f3c3edb01470c3bd6b264096dd73d0b01a1690b57468de3a24167dd83004ff71c51cc025f
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -21009,10 +21241,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
+    "@redwoodjs/auth-supabase-web": 6.1.0
     "@redwoodjs/forms": 6.1.0
     "@redwoodjs/router": 6.1.0
     "@redwoodjs/vite": 6.1.0
     "@redwoodjs/web": 6.1.0
+    "@supabase/supabase-js": ^2
     autoprefixer: ^10.4.15
     postcss: ^8.4.28
     postcss-loader: ^7.3.3
@@ -21317,6 +21551,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"websocket@npm:^1.0.34":
+  version: 1.0.34
+  resolution: "websocket@npm:1.0.34"
+  dependencies:
+    bufferutil: ^4.0.1
+    debug: ^2.2.0
+    es5-ext: ^0.10.50
+    typedarray-to-buffer: ^3.1.5
+    utf-8-validate: ^5.0.2
+    yaeti: ^0.0.6
+  checksum: a7e17d24edec685fdf055940ff9c6a15e726df5bb5e537382390bd1ab978fc8c0d71cd2842bb628e361d823aafd43934cc56aa5b979d08e52461be7da8d01eee
+  languageName: node
+  linkType: hard
+
 "whatwg-encoding@npm:^2.0.0":
   version: 2.0.0
   resolution: "whatwg-encoding@npm:2.0.0"
@@ -21587,6 +21835,13 @@ __metadata:
   version: 5.0.8
   resolution: "y18n@npm:5.0.8"
   checksum: 4df2842c36e468590c3691c894bc9cdbac41f520566e76e24f59401ba7d8b4811eb1e34524d57e54bc6d864bcb66baab7ffd9ca42bf1eda596618f9162b91249
+  languageName: node
+  linkType: hard
+
+"yaeti@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "yaeti@npm:0.0.6"
+  checksum: 4e88702d8b34d7b61c1c4ec674422b835d453b8f8a6232be41e59fc98bc4d9ab6d5abd2da55bab75dfc07ae897fdc0c541f856ce3ab3b17de1630db6161aa3f6
   languageName: node
   linkType: hard
 
