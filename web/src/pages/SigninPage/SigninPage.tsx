@@ -2,23 +2,20 @@ import { Form, Label, TextField, PasswordField, FieldError, Submit, } from '@red
 import { routes, navigate } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
-const SignupPage = () => {
-
-  const { client } = useAuth()
+const SigninPage = () => {
+  const { logIn } = useAuth()
   const [error, setError] = React.useState(null)
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: { email: any; password: any }) => {
     setError(null)
 
     try {
-      const response = await client.auth.signUp({
-        email: data.email,
-        password: data.password
+      const response = await logIn({
+        email: data.email, password: data.password,
+        authMethod: 'password'
       })
-      console.log('response: ', response)
       response?.error?.message ? setError(response.error.message) : navigate(routes.home())
     } catch(error) {
-      console.log('error:  ', error)
       setError(error.message)
     }
   }
@@ -33,7 +30,7 @@ const SignupPage = () => {
             alt="Your Company"
           />
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign up for an account
+            Sign in to your account
           </h2>
         </div>
 
@@ -55,10 +52,10 @@ const SignupPage = () => {
               />
               <FieldError name="email" className="error-message" />
 
-              <Label name="Password" className="label block text-sm font-medium leading-6 text-gray-900" errorClassName="label error" />
+              <Label name="Password" className="label" errorClassName="label error" />
               <PasswordField
                 name="password"
-                className="input input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 errorClassName="input error"
                 validation={{ required: true }}
               />
@@ -90,7 +87,7 @@ const SignupPage = () => {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign Up
+                  Sign In
                 </button>
               </div>
             </Form>
@@ -145,4 +142,4 @@ const SignupPage = () => {
   )
 }
 
-export default SignupPage
+export default SigninPage
