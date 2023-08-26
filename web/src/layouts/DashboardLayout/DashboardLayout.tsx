@@ -14,15 +14,17 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
+  ChatBubbleLeftRightIcon,
   XMarkIcon,
   EnvelopeOpenIcon,
+  ArrowLeftOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'AI Chat', href: '#', icon: UsersIcon, current: false },
-  { name: 'Contact Us', href: '#', icon: EnvelopeOpenIcon, current: false },
-  // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'AI Chat', href: '/chat-conversation', icon: ChatBubbleLeftRightIcon, current: false },
+  { name: 'Contact Us', href: '/contact-us', icon: EnvelopeOpenIcon, current: false },
+  { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
@@ -232,7 +234,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <span className="sr-only">Your profile</span>
             <img
               className="h-8 w-8 rounded-full bg-gray-800"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src="../../../assets/profiles/bruce_canedy_profile.png"
               alt=""
             />
           </a>

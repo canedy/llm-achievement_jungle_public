@@ -1,3 +1,4 @@
+import { MetaTags } from "@redwoodjs/web";
 import { Form, Label, TextField, PasswordField, FieldError, Submit, } from '@redwoodjs/forms'
 import { routes, navigate } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
@@ -14,7 +15,7 @@ const SigninPage = () => {
         email: data.email, password: data.password,
         authMethod: 'password'
       })
-      response?.error?.message ? setError(response.error.message) : navigate(routes.home())
+      response?.error?.message ? setError(response.error.message) : navigate(routes.dashboard())
     } catch(error) {
       setError(error.message)
     }
@@ -22,6 +23,9 @@ const SigninPage = () => {
 
   return (
     <>
+
+    <MetaTags title="Sign in" description="Sign in page" />
+
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img

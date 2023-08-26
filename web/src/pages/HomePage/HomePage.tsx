@@ -6,6 +6,8 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
 const HomePage = () => {
   return (
     <>
+    <MetaTags title="Home" description="Home page" />
+    
         <div className="relative isolate overflow-hidden bg-gray-900">
       <svg
         className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
@@ -71,7 +73,7 @@ const HomePage = () => {
             utilizing constant assisted feedback.
           </p>
           <div className="mt-10 flex items-center gap-x-6">
-            <Link to={routes.signup()} className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</Link>
+            <Link to={routes.signin()} className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</Link>
             <a href="#" className="text-sm font-semibold leading-6 text-white">
               Learn more <span aria-hidden="true">→</span>
             </a>

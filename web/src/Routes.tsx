@@ -21,9 +21,11 @@ const Routes = () => {
       <Route notfound page={NotFoundPage} />
 
       
-        <Private unauthenticated="home">
+      <Private unauthenticated="home">
         <Set wrap={DashboardLayout}>
+          <Route path="/chat-conversation" page={ChatConversationPage} name="chatConversation" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+          <Route path="/contact-us" page={ContactUsPage} name="contactUs" />
         </Set>
       </Private>
       
