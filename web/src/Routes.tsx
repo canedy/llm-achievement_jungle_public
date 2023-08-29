@@ -25,6 +25,8 @@ const Routes = () => {
         <Set wrap={DashboardLayout}>
           <Route path="/chat-conversation" page={ChatConversationPage} name="chatConversation" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+          <Route path="/actions" page={ActionsPage} name="actions" />
+          <Route path="/key-results" page={KeyResultsPage} name="keyResults" />
           <Route path="/contact-us" page={ContactUsPage} name="contactUs" />
         </Set>
       </Private>

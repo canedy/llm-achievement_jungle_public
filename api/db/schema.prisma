@@ -1,6 +1,7 @@
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -8,11 +9,61 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Goal {
+  goal_id Int           @id @default(autoincrement())   
+  type         ObjectiveType
+  description  String
+  status       Status
+  start_date   DateTime
+  end_date     DateTime
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  result        Result[]
+
+  @@map("goals")
+}
+
+model Result {
+  result_id      Int       @id @default(autoincrement())
+  goal_id Int
+  description  String
+  status       Status
+  due_date     DateTime
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+  actions      Action[]
+
+  goal    Goal @relation(fields: [goal_id], references: [goal_id])
+
+  @@map("results")
+}
+
+model Action {
+  action_id    Int       @id @default(autoincrement())
+  result_id    Int?
+  name         String
+  description  String
+  notes        String?
+  status       Status
+  date_achieved DateTime?
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+
+  result       Result?   @relation(fields: [result_id], references: [result_id])
+
+  @@map("actions")
+}
+
+enum ObjectiveType {
+  Company
+  Development
+  Training
+  Networking
+  Personal
+}
+
+enum Status {
+  NotStarted
+  InProgress
+  Complete
 }

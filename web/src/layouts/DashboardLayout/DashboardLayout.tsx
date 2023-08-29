@@ -13,6 +13,7 @@ import {
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
+  Cog6ToothIcon,
   UsersIcon,
   ChatBubbleLeftRightIcon,
   XMarkIcon,
@@ -22,8 +23,8 @@ import {
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
-  { name: 'AI Chat', href: '/chat-conversation', icon: ChatBubbleLeftRightIcon, current: false },
-  { name: 'Contact Us', href: '/contact-us', icon: EnvelopeOpenIcon, current: false },
+  { name: 'Objectives', href: '/chat-conversation', icon: ChatBubbleLeftRightIcon, current: false },
+  { name: 'Settings', href: '/contact-us', icon: Cog6ToothIcon, current: false },
   { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
