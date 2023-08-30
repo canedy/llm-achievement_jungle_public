@@ -12,7 +12,12 @@ import Heading from 'src/components/Heading/Heading';
 import AiCell from 'src/components/AiCell'
 import { Dialog, Transition } from '@headlessui/react'
 
-const KeyResultsPage = () => {
+
+interface Props {
+  id: number
+}
+
+const KeyResultsPage = ({id}: Props) => {
 
   const pages = [
     { name: 'Goals', href: '#', current: false },
@@ -256,8 +261,7 @@ const KeyResultsPage = () => {
       </div> */}
 
       {addKeyResult()}
-
-      <ResultsCell />
+      <ResultsCell id={id} />
     </div>
 
     </>

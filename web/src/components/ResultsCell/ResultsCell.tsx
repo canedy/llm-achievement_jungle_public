@@ -1,16 +1,19 @@
-import type { ResultsQuery } from "types/graphql";
+import type { GoalQuery } from "types/graphql";
 import type { CellSuccessProps, CellFailureProps } from "@redwoodjs/web";
 import { useState } from "react";
 import { Link, routes } from "@redwoodjs/router";
 
 export const QUERY = gql`
-  query ResultsQuery {
-    results {
+  query GoalQuery($id: Int!) {
+    goal: goal(id: $id) {
       id
-      goal_id
-      description
-      status
-      due_date
+      description,
+      result: result {
+        id
+        description
+        status
+        due_date
+      }
     }
   }
 `;
@@ -39,7 +42,7 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: "red" }}>Error: {error?.message}</div>
 );
 
-export const Success = ({ results }: CellSuccessProps<ResultsQuery>) => {
+export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
   return (
     <>
       <div className="space-y-4 mt-4">
@@ -67,23 +70,24 @@ export const Success = ({ results }: CellSuccessProps<ResultsQuery>) => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
-                      {results.map((result) => (
-                        <tr key={result.id}>
+                      
+                      {goal.result.map((res) => (
+                        <tr key={res.id}>
 
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                           <Link
-                              to={routes.actions()}
+                              to={routes.actions({id: res.id})}
                               className="text-indigo-600 hover:text-indigo-900"
                             >
-                              {result.description}<span className="sr-only">, {}</span>
+                              {res.description}<span className="sr-only">, {}</span>
                             </Link>
                           </td>
                           <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                             <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                              {result.status}
+                              {res.status}
                             </span>
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{result.due_date}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{res.due_date}</td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                           <a href="#" className="text-indigo-600 hover:text-indigo-900">
                             View<span className="sr-only">, {}</span>

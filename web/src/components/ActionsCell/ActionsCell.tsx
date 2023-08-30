@@ -1,18 +1,21 @@
-import type { ActionsQuery } from "types/graphql";
+import type { ResultQuery } from "types/graphql";
 import type { CellSuccessProps, CellFailureProps } from "@redwoodjs/web";
 import { useState } from "react";
 import { Link, routes } from "@redwoodjs/router";
 import ActionsCell from ".";
 
 export const QUERY = gql`
-  query ActionsQuery {
-    actions {
+  query ResultQuery($id: Int!) {
+    result: result(id: $id) {
       id
-      result_id
       description
-      note
-      status
-      date_achieved
+      actions: actions {
+        id
+        description
+        date_achieved
+        note
+        status
+      }
     }
   }
 `;
@@ -41,7 +44,7 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: "red" }}>Error: {error?.message}</div>
 );
 
-export const Success = ({ actions }: CellSuccessProps<ActionsQuery>) => {
+export const Success = ({ result }: CellSuccessProps<ResultQuery>) => {
   return (
     <>
     <div className="space-y-4 mt-4">
@@ -73,12 +76,12 @@ export const Success = ({ actions }: CellSuccessProps<ActionsQuery>) => {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 bg-white">
-                        {actions.map((action) => (
+                        {result.actions.map((action) => (
                           <tr key={action.id}>
                          
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                             <Link
-                                to={routes.actions()}
+                                to={routes.home()}
                                 className="text-indigo-600 hover:text-indigo-900"
                               >
                                 {action.description}<span className="sr-only">, {}</span>

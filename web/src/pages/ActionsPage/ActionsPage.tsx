@@ -12,7 +12,11 @@ import AiCell from 'src/components/AiCell'
 import ActionsCell from 'src/components/ActionsCell'
 import { Dialog, Transition } from '@headlessui/react'
 
-const ActionsPage = () => {
+interface Props {
+  id: number
+}
+
+const ActionsPage = ({id}: Props) => {
   const pages = [
     { name: 'Goals', href: '#', current: false },
     { name: 'Results', href: '#', current: true },
@@ -258,7 +262,7 @@ const ActionsPage = () => {
   
         {addKeyResult()}
   
-        <ActionsCell />
+        <ActionsCell id={id} />
       </div>
   
       </>

@@ -90,7 +90,7 @@ export const Success = ({ goals }: CellSuccessProps<GoalsQuery>) => {
                     <tr key={goal.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                       <Link
-                          to={routes.keyResults()}
+                          to={routes.keyResults({id: goal.id})}
                           className="text-indigo-600 hover:text-indigo-900"
                         >
                           {goal.description}<span className="sr-only">, {}</span>
