@@ -8,7 +8,7 @@ export const standard = defineScenario<Prisma.ActionCreateArgs>({
         name: "String",
         description: "String",
         status: "NotStarted",
-        updated_at: "2023-08-29T18:10:25.280Z",
+        updated_at: "2023-08-29T21:56:05.658Z",
       },
     },
     two: {
@@ -16,7 +16,7 @@ export const standard = defineScenario<Prisma.ActionCreateArgs>({
         name: "String",
         description: "String",
         status: "NotStarted",
-        updated_at: "2023-08-29T18:10:25.280Z",
+        updated_at: "2023-08-29T21:56:05.658Z",
       },
     },
   },

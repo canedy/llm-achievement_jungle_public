@@ -9,8 +9,9 @@ generator client {
   binaryTargets = "native"
 }
 
+
 model Goal {
-  goal_id Int           @id @default(autoincrement())   
+  id           Int           @id @default(autoincrement())   
   type         ObjectiveType
   description  String
   status       Status
@@ -24,8 +25,8 @@ model Goal {
 }
 
 model Result {
-  result_id      Int       @id @default(autoincrement())
-  goal_id Int
+  id      Int       @id @default(autoincrement())
+  goal_id      Int
   description  String
   status       Status
   due_date     DateTime
@@ -33,23 +34,22 @@ model Result {
   updated_at   DateTime  @updatedAt
   actions      Action[]
 
-  goal    Goal @relation(fields: [goal_id], references: [goal_id])
+  goal    Goal @relation(fields: [goal_id], references: [id])
 
   @@map("results")
 }
 
 model Action {
-  action_id    Int       @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   result_id    Int?
-  name         String
   description  String
-  notes        String?
+  note         String?
   status       Status
   date_achieved DateTime?
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
 
-  result       Result?   @relation(fields: [result_id], references: [result_id])
+  result       Result?   @relation(fields: [result_id], references: [id])
 
   @@map("actions")
 }

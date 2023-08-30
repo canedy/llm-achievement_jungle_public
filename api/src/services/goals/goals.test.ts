@@ -25,33 +25,31 @@ describe("goals", () => {
   scenario("creates a goal", async () => {
     const result = await createGoal({
       input: {
-        user_id: 4542955,
         type: "Company",
         description: "String",
         status: "NotStarted",
-        start_date: "2023-08-29T21:25:05.513Z",
-        end_date: "2023-08-29T21:25:05.513Z",
-        updated_at: "2023-08-29T21:25:05.513Z",
+        start_date: "2023-08-29T21:55:15.981Z",
+        end_date: "2023-08-29T21:55:15.981Z",
+        updated_at: "2023-08-29T21:55:15.981Z",
       },
     });
 
-    expect(result.user_id).toEqual(4542955);
     expect(result.type).toEqual("Company");
     expect(result.description).toEqual("String");
     expect(result.status).toEqual("NotStarted");
-    expect(result.start_date).toEqual(new Date("2023-08-29T21:25:05.513Z"));
-    expect(result.end_date).toEqual(new Date("2023-08-29T21:25:05.513Z"));
-    expect(result.updated_at).toEqual(new Date("2023-08-29T21:25:05.513Z"));
+    expect(result.start_date).toEqual(new Date("2023-08-29T21:55:15.981Z"));
+    expect(result.end_date).toEqual(new Date("2023-08-29T21:55:15.981Z"));
+    expect(result.updated_at).toEqual(new Date("2023-08-29T21:55:15.981Z"));
   });
 
   scenario("updates a goal", async (scenario: StandardScenario) => {
     const original = (await goal({ id: scenario.goal.one.id })) as Goal;
     const result = await updateGoal({
       id: original.id,
-      input: { user_id: 1470083 },
+      input: { type: "Personal" },
     });
 
-    expect(result.user_id).toEqual(1470083);
+    expect(result.type).toEqual("Personal");
   });
 
   scenario("deletes a goal", async (scenario: StandardScenario) => {

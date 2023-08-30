@@ -23,7 +23,7 @@ import {
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
-  { name: 'Objectives', href: '/chat-conversation', icon: ChatBubbleLeftRightIcon, current: false },
+  { name: 'Goals', href: '/chat-conversation', icon: ChatBubbleLeftRightIcon, current: false },
   { name: 'Settings', href: '/contact-us', icon: Cog6ToothIcon, current: false },
   { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },

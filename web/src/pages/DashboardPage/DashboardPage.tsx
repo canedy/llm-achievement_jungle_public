@@ -15,21 +15,21 @@ const DashboardPage = () => {
 
   const items = [
     {
-      name: 'Objective',
+      name: 'Goals',
       description: 'What are you trying to accomplish?',
       href: '#',
       iconColor: 'bg-pink-500',
       icon: MegaphoneIcon,
     },
     {
-      name: 'Actions',
+      name: 'Results',
       description: 'Walk me through your plan to achieve your objective.',
       href: '#',
       iconColor: 'bg-purple-500',
       icon: CommandLineIcon,
     },
     {
-      name: 'Team',
+      name: 'Actions',
       description: 'Show me the team members that will help you achieve your objective.',
       href: '#',
       iconColor: 'bg-yellow-500',

@@ -34,16 +34,16 @@ describe("results", () => {
         goal_id: scenario.result.two.goal_id,
         description: "String",
         status: "NotStarted",
-        due_date: "2023-08-29T18:10:12.794Z",
-        updated_at: "2023-08-29T18:10:12.794Z",
+        due_date: "2023-08-29T21:56:17.852Z",
+        updated_at: "2023-08-29T21:56:17.852Z",
       },
     });
 
     expect(result.goal_id).toEqual(scenario.result.two.goal_id);
     expect(result.description).toEqual("String");
     expect(result.status).toEqual("NotStarted");
-    expect(result.due_date).toEqual(new Date("2023-08-29T18:10:12.794Z"));
-    expect(result.updated_at).toEqual(new Date("2023-08-29T18:10:12.794Z"));
+    expect(result.due_date).toEqual(new Date("2023-08-29T21:56:17.852Z"));
+    expect(result.updated_at).toEqual(new Date("2023-08-29T21:56:17.852Z"));
   });
 
   scenario("updates a result", async (scenario: StandardScenario) => {

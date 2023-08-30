@@ -1,6 +1,6 @@
 export const schema = gql`
   type Result {
-    result_id: Int!
+    id: Int!
     goal_id: Int!
     description: String!
     status: Status!
@@ -23,7 +23,6 @@ export const schema = gql`
   }
 
   input CreateResultInput {
-    result_id: Int!
     goal_id: Int!
     description: String!
     status: Status!
@@ -33,7 +32,6 @@ export const schema = gql`
   }
 
   input UpdateResultInput {
-    result_id: Int
     goal_id: Int
     description: String
     status: Status

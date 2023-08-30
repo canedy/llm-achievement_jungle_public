@@ -4,7 +4,7 @@ import { db } from 'api/src/lib/db'
 export default async () => {
   try {
     const goals: Prisma.GoalCreateArgs['data'][] = [
-      { user_id: 1, type: 'Company', description: 'Graduate with a PhD in Artificial Intelligence or Machine Learning', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
+      { id: 1, type: 'Company', description: 'Graduate with a PhD in Artificial Intelligence or Machine Learning', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
     ]
 
     console.log('Seeding Goals ...')
@@ -12,9 +12,9 @@ export default async () => {
     console.log('Done.', createdGoal)
 
     const results: Prisma.ResultCreateArgs['data'][] = [
-      { goal_id: createdGoal.goal_id, description: "Write and submit a research proposal on a topic related to Artificial Intelligence or Machine Learning", status: "InProgress", due_date: new Date("2023-06-30") },
-      { goal_id: createdGoal.goal_id, description: "Complete required coursework for the PhD program in AI or ML", status: "InProgress", due_date: new Date("2023-06-30") },
-      { goal_id: createdGoal.goal_id, description: "Publish at least one research article in a reputable conference or journal", status: "InProgress", due_date: new Date("2023-06-30") }
+      { goal_id: createdGoal.id, description: "Write and submit a research proposal on a topic related to Artificial Intelligence or Machine Learning", status: "InProgress", due_date: new Date("2023-06-30") },
+      { goal_id: createdGoal.id, description: "Complete required coursework for the PhD program in AI or ML", status: "InProgress", due_date: new Date("2023-06-30") },
+      { goal_id: createdGoal.id, description: "Publish at least one research article in a reputable conference or journal", status: "InProgress", due_date: new Date("2023-06-30") }
     ]
 
     console.log('Seeding Results ...')
@@ -24,9 +24,9 @@ export default async () => {
     console.log('Done.', createdResult0)
 
     const actions: Prisma.ActionCreateArgs['data'][] = [
-      { result_id: createdResult0.result_id, name: "Conduct a literature review on the chosen research topic", description: "", status: "NotStarted" },
-      { result_id: createdResult0.result_id, name: "Formulate research questions and hypotheses", description: "", status: "NotStarted" },
-      { result_id: createdResult0.result_id, name: "Design and plan research experiments", description: "", status: "NotStarted" },
+      { result_id: createdResult0.id, description: "Conduct a literature review on the chosen research topic", note: "", status: "NotStarted" },
+      { result_id: createdResult0.id, description: "Formulate research questions and hypotheses", note: "", status: "NotStarted" },
+      { result_id: createdResult0.id, description: "Design and plan research experiments", note: "", status: "NotStarted" },
     ]    
 
     console.log('Seeding Actions ...')
@@ -35,23 +35,23 @@ export default async () => {
 
 
     const actions1: Prisma.ActionCreateArgs['data'][] = [
-      { result_id: createdResult1.result_id, name: "Conduct a literature review on the chosen research topic", description: "", status: "NotStarted" },
-      { result_id: createdResult1.result_id, name: "Formulate research questions and hypotheses", description: "", status: "NotStarted" },
-      { result_id: createdResult1.result_id, name: "Design and plan research experiments", description: "", status: "NotStarted" },
+      { result_id: createdResult1.id, description: "Conduct a literature review on the chosen research topic", note: "", status: "NotStarted" },
+      { result_id: createdResult1.id, description: "Formulate research questions and hypotheses", note: "", status: "NotStarted" },
+      { result_id: createdResult1.id, description: "Design and plan research experiments", note: "", status: "NotStarted" },
     ]    
 
     console.log('Seeding Actions ...')
-    const createActions1 = await db.action.createMany({ data: actions })
+    const createActions1 = await db.action.createMany({ data: actions1 })
     console.log('Done.', createActions1)
 
     const actions2: Prisma.ActionCreateArgs['data'][] = [
-      { result_id: createdResult2.result_id, name: "Conduct a literature review on the chosen research topic", description: "", status: "NotStarted" },
-      { result_id: createdResult2.result_id, name: "Formulate research questions and hypotheses", description: "", status: "NotStarted" },
-      { result_id: createdResult2.result_id, name: "Design and plan research experiments", description: "", status: "NotStarted" },
+      { result_id: createdResult2.id, description: "Conduct a literature review on the chosen research topic", note: "", status: "NotStarted" },
+      { result_id: createdResult2.id, description: "Formulate research questions and hypotheses", note: "", status: "NotStarted" },
+      { result_id: createdResult2.id, description: "Design and plan research experiments", note: "", status: "NotStarted" },
     ]    
 
     console.log('Seeding Actions ...')
-    const createActions2 = await db.action.createMany({ data: actions })
+    const createActions2 = await db.action.createMany({ data: actions2 })
     console.log('Done.', createActions1)
 
   } catch (error) {

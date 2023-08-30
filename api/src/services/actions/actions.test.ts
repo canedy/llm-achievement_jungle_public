@@ -34,14 +34,14 @@ describe("actions", () => {
         name: "String",
         description: "String",
         status: "NotStarted",
-        updated_at: "2023-08-29T18:10:25.257Z",
+        updated_at: "2023-08-29T21:56:05.633Z",
       },
     });
 
     expect(result.name).toEqual("String");
     expect(result.description).toEqual("String");
     expect(result.status).toEqual("NotStarted");
-    expect(result.updated_at).toEqual(new Date("2023-08-29T18:10:25.257Z"));
+    expect(result.updated_at).toEqual(new Date("2023-08-29T21:56:05.633Z"));
   });
 
   scenario("updates a action", async (scenario: StandardScenario) => {

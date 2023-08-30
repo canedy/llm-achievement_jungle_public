@@ -6,6 +6,7 @@ import Chat from 'src/components/Chat/Chat'
 import { CheckIcon, ArrowRightIcon, ChatBubbleLeftRightIcon,  ChevronLeftIcon, ChevronRightIcon, HomeIcon} from '@heroicons/react/20/solid'
 import Heading from 'src/components/Heading/Heading';
 import AiCell from 'src/components/AiCell'
+import GoalsCell from 'src/components/GoalsCell'
 import { Dialog, Transition } from '@headlessui/react'
 
 
@@ -14,7 +15,7 @@ const ChatConversationPage = () => {
   const [open, setOpen] = useState(false)
 
   const pages = [
-    { name: 'Objectives', href: '#', current: false }
+    { name: 'Goals', href: '#', current: false }
   ]
 
   const prompts = [
@@ -75,7 +76,7 @@ const ChatConversationPage = () => {
   type="button"
   className="block mr-5 rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"        
 >
-  Build Assisted Objective
+    Create Goal with AI
 </button>
 
 <button
@@ -84,7 +85,7 @@ const ChatConversationPage = () => {
     
     onClick={() => setOpen(true)}
   >
-    Manual Objective
+    Create Manual Goal
 </button>
 
 
@@ -277,9 +278,11 @@ const ChatConversationPage = () => {
 
       {addObjective()}
 
-      <div className="space-y-4 mt-4">
+      {/* <div className="space-y-4 mt-4">
         <AiCell prompt={messages} />
-      </div>
+      </div> */}
+
+      <GoalsCell />
     </div>
 
 

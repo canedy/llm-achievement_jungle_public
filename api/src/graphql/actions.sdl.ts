@@ -1,10 +1,9 @@
 export const schema = gql`
   type Action {
-    action_id: Int!
+    id: Int!
     result_id: Int
-    name: String!
     description: String!
-    notes: String
+    note: String
     status: Status!
     date_achieved: DateTime
     created_at: DateTime!
@@ -24,11 +23,10 @@ export const schema = gql`
   }
 
   input CreateActionInput {
-    action_id: Int!
+    id: Int!
     result_id: Int
-    name: String!
     description: String!
-    notes: String
+    note: String
     status: Status!
     date_achieved: DateTime
     created_at: DateTime!
@@ -36,11 +34,10 @@ export const schema = gql`
   }
 
   input UpdateActionInput {
-    action_id: Int
+    id: Int
     result_id: Int
-    name: String
     description: String
-    notes: String
+    note: String
     status: Status
     date_achieved: DateTime
     created_at: DateTime

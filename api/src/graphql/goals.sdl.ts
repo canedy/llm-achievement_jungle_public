@@ -1,7 +1,6 @@
 export const schema = gql`
   type Goal {
-    goal_id: Int!
-    user_id: Int!
+    id: Int!
     type: ObjectiveType!
     description: String!
     status: Status!
@@ -32,8 +31,6 @@ export const schema = gql`
   }
 
   input CreateGoalInput {
-    goal_id: Int!
-    user_id: Int!
     type: ObjectiveType!
     description: String!
     status: Status!
@@ -44,8 +41,6 @@ export const schema = gql`
   }
 
   input UpdateGoalInput {
-    goal_id: Int
-    user_id: Int
     type: ObjectiveType
     description: String
     status: Status

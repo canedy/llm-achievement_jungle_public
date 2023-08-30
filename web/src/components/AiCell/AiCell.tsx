@@ -19,9 +19,7 @@ export const Failure = ({ error }: CellFailureProps<FindAiQueryVariables>) => (
   <div style={{ color: "red" }}>Error: {error?.message}</div>
 );
 
-export const Success = ({
-  ai,
-}: CellSuccessProps<FindAiQuery, FindAiQueryVariables>) => {
+export const Success = ({ai}: CellSuccessProps<FindAiQuery, FindAiQueryVariables>) => {
   const [messages, setMessages] = useState([])
 
   const newMessage = [...messages, JSON.parse(ai.result)]
