@@ -32,7 +32,7 @@ export const Loading = () => (
       `}
     </style>
   </div>
-  );
+);
 
 export const Empty = () => <div>Empty</div>;
 
@@ -42,20 +42,10 @@ export const Failure = ({ error }: CellFailureProps) => (
 
 export const Success = ({ goals }: CellSuccessProps<GoalsQuery>) => {
   const [messages, setMessages] = useState([])
-
-  // const newMessage = [...messages, JSON.parse(ai.result)]
-
-  // const obj = JSON.parse(ai.result);
-
-  // setMessages((current) => ([...current, ai.result]))
-  const people = [
-    { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-    // More people...
-  ]
   
   return (
     <>
- <div className="mt-8 flow-root">
+      <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
