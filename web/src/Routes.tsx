@@ -23,10 +23,10 @@ const Routes = () => {
       
       <Private unauthenticated="home">
         <Set wrap={DashboardLayout}>
-          <Route path="/chat-conversation" page={ChatConversationPage} name="chatConversation" />
+          <Route path="/goals" page={GoalsPage} name="goals" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/actions/{id:Int}" page={ActionsPage} name="actions" />
-          <Route path="/key-results/{id:Int}" page={KeyResultsPage} name="keyResults" />
+          <Route path="/results/{id:Int}" page={ResultsPage} name="results" />
           <Route path="/contact-us" page={ContactUsPage} name="contactUs" />
         </Set>
       </Private>

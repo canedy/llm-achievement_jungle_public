@@ -45,6 +45,13 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
   return (
     <>
+
+    
+      <div className="my-8">
+        <h2 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Goal</h2>
+        <span className="text-2xl text-gray-600 font-semibold">{goal.description}</span>
+      </div>
+
       <div className="space-y-4 mt-4">
 
           <div className="mt-8 flow-root">
@@ -56,7 +63,7 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
                       <tr>
 
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                          Description
+                          Results
                         </th>
                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                           Status

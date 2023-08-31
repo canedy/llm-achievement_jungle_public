@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import ChatConversationPage from "./ChatConversationPage";
+import ChatConversationPage from "./GoalsPage";
 
 const meta: Meta<typeof ChatConversationPage> = {
   component: ChatConversationPage,

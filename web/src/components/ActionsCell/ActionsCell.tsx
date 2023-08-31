@@ -47,6 +47,12 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({ result }: CellSuccessProps<ResultQuery>) => {
   return (
     <>
+
+        <div className="my-8">
+          <h2 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Result</h2>
+          <span className="text-2xl text-gray-600 font-semibold">{result.description}</span>
+        </div>
+
     <div className="space-y-4 mt-4">
           {/* <AiCell prompt="For FY24 starting in July, Attend a workshop on a dvanced data visualization. Right now I have the following 2 actions. 1. Register for the workshop 2. Prepare a list of questions for the workshop" /> */}
             {/* <AiCell prompt={messages} /> */}
@@ -59,7 +65,7 @@ export const Success = ({ result }: CellSuccessProps<ResultQuery>) => {
                       <thead className="bg-gray-50">
                         <tr>
                           <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                            Description
+                            Actions
                           </th>
                           <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Date Achieved

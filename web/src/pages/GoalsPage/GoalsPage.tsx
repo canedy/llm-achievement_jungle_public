@@ -10,12 +10,12 @@ import GoalsCell from 'src/components/GoalsCell'
 import { Dialog, Transition } from '@headlessui/react'
 
 
-const ChatConversationPage = () => {
+const GoalsPage = () => {
 
   const [open, setOpen] = useState(false)
 
   const pages = [
-    { name: 'Goals', href: '#', current: false }
+    { name: 'Goals', to: routes.goals(), current: true }
   ]
 
   const prompts = [
@@ -173,7 +173,7 @@ const ChatConversationPage = () => {
 
   return (
     <>
-      <MetaTags title="Objectives" description="Objectives page" />
+      <MetaTags title="Goals" description="Goals page" />
 {/* 
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-14">
@@ -248,23 +248,25 @@ const ChatConversationPage = () => {
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <div>
-            <a href="#" className="text-gray-400 hover:text-gray-500">
+          <Link 
+              to={routes.dashboard()} className="text-gray-400 hover:text-gray-500">
               <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <span className="sr-only">Home</span>
-            </a>
+            </Link>
           </div>
         </li>
         {pages.map((page) => (
           <li key={page.name}>
             <div className="flex items-center">
               <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-              <a
-                href={page.href}
+              <Link
+                key={page.name} 
+                to={page.to}
                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                 aria-current={page.current ? 'page' : undefined}
               >
                 {page.name}
-              </a>
+              </Link>
             </div>
           </li>
         ))}
@@ -292,4 +294,4 @@ const ChatConversationPage = () => {
   );
 };
 
-export default ChatConversationPage;
+export default GoalsPage;

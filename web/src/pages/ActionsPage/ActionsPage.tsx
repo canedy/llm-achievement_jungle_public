@@ -18,9 +18,9 @@ interface Props {
 
 const ActionsPage = ({id}: Props) => {
   const pages = [
-    { name: 'Goals', href: '#', current: false },
-    { name: 'Results', href: '#', current: true },
-    { name: 'Actions', href: '#', current: true },
+    { name: 'Goals', to: routes.goals(), current: false },
+    { name: 'Results', to: routes.results({id}), current: false },
+    { name: 'Actions', to: routes.actions({id}), current: true },
   ]
 
   const [messages, setMessages] = useState("")
@@ -145,7 +145,7 @@ const ActionsPage = ({id}: Props) => {
       
     return (
       <>
-        <MetaTags title="KeyResults" description="KeyResults page" />
+        <MetaTags title="Actions" description="Actions page" />
   
   
   
@@ -219,33 +219,32 @@ const ActionsPage = ({id}: Props) => {
         <ol role="list" className="flex items-center space-x-4">
           <li>
             <div>
-              <a href="#" className="text-gray-400 hover:text-gray-500">
-                <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                <span className="sr-only">Home</span>
-              </a>
+            <Link 
+              to={routes.dashboard()} className="text-gray-400 hover:text-gray-500">
+              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+              <span className="sr-only">Home</span>
+            </Link>
             </div>
           </li>
           {pages.map((page) => (
             <li key={page.name}>
               <div className="flex items-center">
                 <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                <a
-                  href={page.href}
+                <Link
+                  key={page.name} 
+                  to={page.to}
                   className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                   aria-current={page.current ? 'page' : undefined}
                 >
                   {page.name}
-                </a>
+                </Link>
               </div>
             </li>
           ))}
         </ol>
       </nav>
   
-      <div className="mb-8">
-          <h2 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Action</h2>
-          <span className="text-2xl text-gray-600 font-semibold">Write and submit a research proposal on a topic related to Artificial Intelligence or Machine Learning</span>
-        </div>
+
           
         {/* <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
