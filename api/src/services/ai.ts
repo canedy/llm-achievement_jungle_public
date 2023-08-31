@@ -3,41 +3,48 @@ import { StructuredOutputParser } from 'langchain/output_parsers'
 import z from 'zod'
 import { PromptTemplate } from 'langchain/prompts'
 
+import { db } from 'src/lib/db'
+
 import { logger } from 'src/lib/logger'
+import { ObjectiveType, Status } from 'types/graphql'
+
 
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
         description: z
             .string()
             .describe('this is a description of an the objective that I am trying to achieve for a given time frame.'),
+        type: z
+            .string()
+            .describe('this is the current type based on goal, result, and actions. Determine which of the following types to apply. (i.e. Company, Development, Training, Networking, Personal'),
         status: z
             .string()
-            .describe('this is current status of the objective (i.e. In Progress, Not Started, Completed)'),
+            .describe('this is current status of the objective. Should always be NotStarted'),
         startDate: z
             .date()
-            .describe('this will be start date of object. If no time period is given use 2023. (i.e. Month, Day, Year)'),
+            .describe('this will be start date of object. If no time period is given use 2023. Use the MM/DD/YYYY format'),
         endDate: z
             .date()
-            .describe('this will be start date of object. If no time period is given use 2023. (i.e. Month, Day, Year)'),
-        keyResults: z.array(
+            .describe('this will be start date of object. If no time period is given use 2023. Use the MM/DD/YYYY format'),
+        results: z.array(
             z.object({
-                actionName: z
-                    .string()
-                    .describe('this is a label or name for the group of actions associated with the key result. Generate a fun group name for the actions.'),
                 description: z
                     .string()
                     .describe('this is a description of the action associated with the objective.'),
+                status: z
+                    .string()
+                    .describe('this is current status of the objective. Should always be NotStarted'),
+                dueDate: z
+                    .date()
+                    .describe('this is the date the result is due to meet the main goal end date. If no time period is given use 2023. Use the MM/DD/YYYY format'),                    
                 actions: z.array(
                     z.object({
                         description: z
                             .string()
                             .describe('this is a description of the action associated with the objective.'),
-                        dueDate: z
-                            .date()
-                            .describe('this will be the due date for the action. (i.e. Month, Day, Year)'),
                         status: z
                             .string()
-                            .describe('this is current status of the action (i.e. In Progress, Not Started, Completed)')
+                            .describe('this is current status of the action. Should always be NotStarted')
                     })
                 ).describe('these are the actions associated with the key result. Each action should be completed to achieve the key result. Only one set of actions per key result.')
             })
@@ -71,6 +78,57 @@ export const getAi = async (message: { prompt: string }) => {
     const input = await getPrompt(message.prompt)
     const model = new OpenAI({ temperature: 1, modelName: 'gpt-3.5-turbo'})
     const result = await model.call(input)
+
+    const obj = JSON.parse(result);
+
+    const createGoal = await db.goal.create({
+        data: {
+            type: obj.type,
+            description: obj.description,
+            status: obj.status,
+            start_date: new Date(),
+            end_date: new Date(),
+        },
+    })
+
+    for(let i = 0; i < obj.results.length; i++) {
+        const createResult = await db.result.create({
+            data: {
+                goal_id: createGoal.id,
+                description: obj.results[i].description,
+                status: obj.results[i].status,
+                due_date: new Date(),
+            },
+        })
+        for(let j = 0; j < obj.results[i].actions.length; j++) {
+            const createAction = await db.action.create({
+                data: {
+                    result_id: createResult.id,
+                    description: obj.results[i].actions[j].description,
+                    status: obj.results[i].actions[j].status,
+                },
+            })
+        }
+    }
+
+    // obj.result.map(async (item: { description: string; status: Status }) => {
+    //     const createResult = await db.result.create({
+    //         data: {
+    //             goal_id: createGoal.id,
+    //             description: item.description,
+    //             status: item.status,
+    //             due_date: new Date(),
+    //         },
+    //     })
+    // })  
+
+    // const createAction = await db.action.create({
+    //     data: {
+    //         result_id: createResult.id,
+    //         description: obj.results[0].actions[0].description,
+    //         status: obj.results[0].actions[0].status,
+    //     },
+    // })
     
     return {
         result
