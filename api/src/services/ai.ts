@@ -73,7 +73,7 @@ const getPrompt = async (content) => {
     return input
 }
 
-export const getAi = async (message: { prompt: string }) => {
+export const createAi = async (message: { prompt: string }) => {
 
     const input = await getPrompt(message.prompt)
     const model = new OpenAI({ temperature: 1, modelName: 'gpt-3.5-turbo'})

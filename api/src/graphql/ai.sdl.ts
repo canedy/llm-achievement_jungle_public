@@ -6,4 +6,8 @@ export const schema = gql`
 type Query {
     getAi(prompt: String!): Ai @skipAuth
 }
+
+type Mutation {
+    createAi(prompt: String!): Ai @skipAuth
+}
 `

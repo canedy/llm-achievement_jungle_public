@@ -6,8 +6,8 @@ export const schema = gql`
     status: Status!
     start_date: DateTime!
     end_date: DateTime!
-    created_at: DateTime!
-    updated_at: DateTime!
+    created_at: DateTime
+    updated_at: DateTime
     result: [Result]!
   }
 
@@ -36,8 +36,6 @@ export const schema = gql`
     status: Status!
     start_date: DateTime!
     end_date: DateTime!
-    created_at: DateTime!
-    updated_at: DateTime!
   }
 
   input UpdateGoalInput {
@@ -46,13 +44,11 @@ export const schema = gql`
     status: Status
     start_date: DateTime
     end_date: DateTime
-    created_at: DateTime
-    updated_at: DateTime
   }
 
   type Mutation {
     createGoal(input: CreateGoalInput!): Goal! @requireAuth
     updateGoal(id: Int!, input: UpdateGoalInput!): Goal! @requireAuth
-    deleteGoal(id: Int!): Goal! @requireAuth
+    deleteGoal(id: Int!): Goal! @skipAuth
   }
 `;

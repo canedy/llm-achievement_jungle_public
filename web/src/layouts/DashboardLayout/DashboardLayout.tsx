@@ -18,16 +18,22 @@ import {
   ChatBubbleLeftRightIcon,
   XMarkIcon,
   EnvelopeOpenIcon,
+  PencilSquareIcon,
   ArrowLeftOnRectangleIcon,
+  GiftIcon,
 } from '@heroicons/react/24/outline'
 
+
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
-  { name: 'Goals', href: '/goals', icon: ChatBubbleLeftRightIcon, current: false },
-  { name: 'Settings', href: '/contact-us', icon: Cog6ToothIcon, current: false },
-  { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false },
-  // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true, live: true},
+  { name: 'Goals', href: '/goals', icon: PencilSquareIcon, current: false, live: true},
+  { name: 'Chat', href: '/chat', icon: ChatBubbleLeftRightIcon, current: false, live: false},
+  { name: 'Hot 3 Actions', href: '#', icon: CalendarIcon, current: false, live: false},
+  { name: 'Show Appreciation', href: '#', icon: GiftIcon, current: false, live: false},
+  { name: 'Settings', href: '/contact-us', icon: Cog6ToothIcon, current: false, live: false},
+  { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false, live: true},
+  // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false, live: true},
+  // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false, live: true},
 ]
 const teams = [
   { id: 1, name: 'Sarah Smith', href: '#', initial: 'SS', current: false },
@@ -113,6 +119,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                                 >
                                   <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                                   {item.name}
+                                  {item.live || ( <span className="text-xs text-gray-500 italic py-1 ml-auto">coming soon</span> )}
                                 </a>
                               </li>
                             ))}
@@ -178,13 +185,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                         >
                           <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                           {item.name}
+                          {item.live || ( <span className="text-xs text-gray-500 italic py-1 ml-auto">coming soon</span> )}
                         </a>
                       </li>
                     ))}
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">Your team</div>
+                  <div className="text-xs font-semibold leading-6 text-gray-400">Your team <span className="text-xs text-gray-500 italic py-1 px-4">coming soon</span></div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>

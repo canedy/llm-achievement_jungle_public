@@ -19,7 +19,7 @@ model Goal {
   end_date     DateTime
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
-  result        Result[]
+  result       Result[] 
 
   @@map("goals")
 }
@@ -34,7 +34,7 @@ model Result {
   updated_at   DateTime  @updatedAt
   actions      Action[]
 
-  goal    Goal @relation(fields: [goal_id], references: [id])
+  goal    Goal @relation(fields: [goal_id], references: [id], onDelete: Cascade)
 
   @@map("results")
 }
@@ -49,7 +49,7 @@ model Action {
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
 
-  result       Result?   @relation(fields: [result_id], references: [id])
+  result       Result?   @relation(fields: [result_id], references: [id], onDelete: Cascade)
 
   @@map("actions")
 }
