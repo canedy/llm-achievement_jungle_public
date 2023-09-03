@@ -9,23 +9,13 @@ import AiCell from 'src/components/AiCell';
 import { toast, Toaster } from '@redwoodjs/web/toast'
 import {
   CreateAiMutation,
-  CreateAiMutationVariables,
-  DeleteGoalMutation,
-  DeleteGoalMutationVariables,
+  CreateAiMutationVariables
 } from 'types/graphql'
 
 const CREATE_AI_GOAL = gql`
   mutation CreateAiMutation($prompt: String!) {
     createAi: createAi(prompt: $prompt) {
       result
-    }
-  }
-`;
-
-const DELETE_AI_GOAL = gql`
-  mutation DeleteGoalMutation($id: Int!) {
-    deleteGoal: deleteGoal(id: $id) {
-      id
     }
   }
 `;
@@ -48,24 +38,10 @@ const GoalsPage = () => {
     }
   )
 
-  const [deleteGoal , { loading1, error1 }] = useMutation<DeleteGoalMutation, DeleteGoalMutationVariables>(
-    DELETE_AI_GOAL, {
-      onCompleted: () => {
-        toast.success('Goal deleted!', {duration: 6000})
-      }
-    }
-  )
-
-
   const onSubmit = async (data: { prompt: string; }) => {
     create({ variables: { prompt: data.prompt } })
     setOpen(false)
   }
-
-  const onDelete = async (id) => {
-    deleteGoal({ variables: { id: id } })
-  }
-
 
   const addGoal = () => {
      const cancelButtonRef = useRef(null)
@@ -81,12 +57,13 @@ const GoalsPage = () => {
               Create Goal with AI
           </button>
 
-          <button
-              type="button"
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            >
-              Create Manual Goal
-          </button>
+          <Link 
+            to={routes.goalCreate()}                              
+            className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          >
+            Create Manual Goal
+          </Link>
+
 
           <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -195,14 +172,11 @@ const GoalsPage = () => {
             ))}
           </ol>
         </nav>
-
-      <button onClick={() => onDelete(15)}>Delete</button>
-    
+   
        {addGoal()}
 
        <GoalsCell />
 
-       
       </div>   
     </>
   );

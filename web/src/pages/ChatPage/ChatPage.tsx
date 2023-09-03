@@ -67,6 +67,10 @@ const invoice = {
   ],
 }
 
+const pages = [
+  { name: 'Goals', to: routes.goals(), current: true }
+]
+
 const stats = [
   { name: 'Total Subscribers', stat: '71,897' },
   { name: 'Avg. Open Rate', stat: '58.16%' },

@@ -55,11 +55,15 @@ model Action {
 }
 
 enum ObjectiveType {
-  Company
-  Development
-  Training
-  Networking
   Personal
+  Professional
+  Physical
+  Mental_Health
+  Financial
+  relationships
+  Spiritual
+  Social
+  Other  
 }
 
 enum Status {

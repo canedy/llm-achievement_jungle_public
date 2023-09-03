@@ -249,7 +249,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </a>
         </div>
 
-        <main className="flex h-screen flex-col py-10 lg:pl-72">
+        <main className="flex h-screen flex-col py-10 lg:pl-72 bg-gray-200">
           <div className="px-4 sm:px-6 lg:px-8">
           
           {children}

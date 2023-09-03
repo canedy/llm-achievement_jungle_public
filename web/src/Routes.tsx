@@ -24,6 +24,8 @@ const Routes = () => {
       <Private unauthenticated="home">
         <Set wrap={DashboardLayout}>
           <Route path="/goals" page={GoalsPage} name="goals" />
+          <Route path="/goal-edit/{id:Int}" page={GoalEditPage} name="goalEdit" />
+          <Route path="/goal-create" page={GoalCreatePage} name="goalCreate" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/actions/{id:Int}" page={ActionsPage} name="actions" />
           <Route path="/results/{id:Int}" page={ResultsPage} name="results" />
