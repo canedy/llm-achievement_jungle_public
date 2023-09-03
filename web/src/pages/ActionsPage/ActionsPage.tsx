@@ -43,14 +43,12 @@ const ActionsPage = ({id}: Props) => {
       return (
         <>
           <div className="display flex">
-  
-  
-  
+            
             <button
               type="button"
               className="block mr-5 rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"        
             >
-              Create Action with AI
+              Create Result with AI <span className="text-xs text-gray-300 italic py-1 ml-auto">coming soon</span>
             </button>
   
             <button
