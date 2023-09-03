@@ -98,8 +98,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-14"
-                        src="./logo-image.png"
-                        alt="Your Company"
+                        src="../logo-image.png"
+                        alt="Technology Playground"
                       />
                     </div>
                     <nav className="flex flex-1 flex-col">
@@ -164,8 +164,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <div className="flex my-4 h-16 shrink-0 items-center">
               <img
                 className="h-14"
-                src="./logo-image.png"
-                alt="Your Company"
+                src="../logo-image.png"
+                alt="Technology Playground"
               />
             </div>
             <nav className="flex flex-1 flex-col">

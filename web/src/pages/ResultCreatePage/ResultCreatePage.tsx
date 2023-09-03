@@ -6,73 +6,58 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useRef, useState } from 'react'
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
 
-import { GetGoalQuery, UpdateGoalMutation, UpdateGoalMutationVariables} from 'types/graphql'
+import { CreateResultMutation, CreateResultMutationVariables} from 'types/graphql'
+import { toast, Toaster } from '@redwoodjs/web/toast'
 
-const GET_GOAL = gql`
-query GetGoalQuery($id: Int!) {
-  goal(id: $id) {
-    id
-    description
-    status
-    start_date
-    end_date
-    type
-  }
-}
-`;
-
-const UPDATE_GOAL = gql`
-  mutation UpdateGoalMutation($id: Int!, $input: UpdateGoalInput!) {
-    updateGoal(id: $id, input: $input) {
+const CREATE_RESULT = gql`
+  mutation CreateResultMutation($input: CreateResultInput!) {
+    createResult(input: $input) {
       id
+      goal_id
       description
       status
-      start_date
-      end_date
-      type
+      due_date
     }
   }
 `;
 
-const GoalEditPage = ({id}) => {
+const ResultCreatePage = ({id, goalId}) => {
+  
+  const [createResult, { data, error }] = useMutation(CREATE_RESULT);
+  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  
+  const onSave= async (input) => {
 
-
-    const { data, loading, error } = useQuery(GET_GOAL, { variables: { id } });
-    const [updateGoal, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(UPDATE_GOAL);
-    
-    if (loading) {
-      return <div>Loading...</div>;
+    delete input.id;
+    if (input.goal_id) {
+      input.goal_id = parseInt(input.goal_id);
     }
+    // const { id, ...rest } = input;
     
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    }
-
-    
-    const onSave= async (input) => {
-      const { id, ...rest } = input;
-      console.log("input", { ...input });
+    try {
+      await createResult({ variables: { input } });
+      toast.success('New result created!', {duration: 6000})   
       
-      try {
-        await updateGoal({ variables: { id: parseInt(id), input: rest } });
-        // await updateGoal({ variables: { id: data?.goal?.id, input: data } });
-        console.log("Goal updated successfully!");
-        navigate(routes.goals());
-        // You can add any other logic here, like navigating the user to another page.
-      } catch (err) {
-        console.error("Error updating goal:", err);
-      }
+      navigate(routes.results({id: goalId}), { replace: true });
+    } catch (err) {
+      console.error("Error updating result:", err);
+    }
   }
 
-  const pages = [
-    { name: 'Goals', to: routes.goals(), current: true }
-  ]
+// const pages = [
+//   { name: 'Goals', to: routes.goals(), current: false},
+//   { name: 'Results', to: { back(), current: true }
+// ]
 
   return (
     <>
-      <MetaTags title="GoalEdit" description="GoalEdit page" />
+      <MetaTags title="ResultEdit" description="Resultdit page" />
+      <Toaster />
 
-      <nav className="flex pb-8" aria-label="Breadcrumb">
+      {/* <nav className="flex pb-8" aria-label="Breadcrumb">
 
           <ol role="list" className="flex items-center space-x-4">
             <li>
@@ -100,7 +85,7 @@ const GoalEditPage = ({id}) => {
               </li>
             ))}
           </ol>
-        </nav>
+        </nav> */}
 
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -112,11 +97,14 @@ const GoalEditPage = ({id}) => {
           
                   <Form onSubmit={onSave}>
                     <FormError
-                      error={mutationError || mutationData?.updateGoal?.errors}
-                    />     
+                      error={error}
+                      wrapperClassName="bg-red-100 text-red-900 text-sm font-bold p-3 mb-4 rounded-md"
+                      titleClassName="font-bold"
+                      listClassName="mt-2 list-disc list-inside"
+                    />              
 
-                    <HiddenField name="id" defaultValue={data.goal.id} />                  
-
+                    <HiddenField name="goal_id" defaultValue={parseInt(goalId)} />
+                    
                     <div className="p-4">
                       <label 
                         htmlFor="description" 
@@ -128,7 +116,6 @@ const GoalEditPage = ({id}) => {
                         <TextField 
                           name="description" 
                           id="description"
-                          defaultValue={data.goal.description}
                           className="w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50"
                           validation={{ required: true }}
                         />
@@ -146,7 +133,6 @@ const GoalEditPage = ({id}) => {
                         <SelectField 
                           name="status"
                           id="status"
-                          defaultValue = {data.goal.status}
                           className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
                         >
                           <option value="" disabled hidden>Select Status</option>
@@ -157,65 +143,17 @@ const GoalEditPage = ({id}) => {
                       </div>
                     </div>
 
-
-                    <div className="p-4">
-                      <label 
-                        htmlFor="type" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Type of Goal:
-                      </label>
-                      <div className="mt-1 relative rounded-md shadow-sm">
-                        <SelectField 
-                          name="type"
-                          id="type"
-                          defaultValue = {data.goal.status}
-                          className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-                        >
-                          <option value="" disabled hidden>Select Status</option>
-                          <option value="Personal">Personal</option>
-                          <option value="Professional">Professional</option>
-                          <option value="Physical">Physical</option>
-                          <option value="Mental_Health">Mental Health</option>
-                          <option value="Financial">Financial</option>
-                          <option value="relationships">Relationships</option>
-                          <option value="Spiritual">Spiritual</option>
-                          <option value="Social">Social</option>
-                          <option value="Other">Other</option>
-                        </SelectField>
-                      </div>
-                    </div>
-
                     <div className="p-4">
                     <label 
-                        htmlFor="start_date" 
+                        htmlFor="due_date" 
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Start Date:
+                        Due Date:
                       </label>
                       <div className="mt-1 relative rounded-md shadow-sm">
                         <DateField 
-                          name="start_date"
-                          id="start_date"
-                          defaultValue = {data?.goal?.start_date ? new Date(data.goal.start_date).toISOString().slice(0, 10) : ""}
-                          className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-                          validation={{ required: true }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="p-4">
-                    <label 
-                        htmlFor="end_date" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        End Date:
-                      </label>
-                      <div className="mt-1 relative rounded-md shadow-sm">
-                        <DateField 
-                          name="end_date"
-                          id="end_date"
-                          defaultValue = {data?.goal?.end_date ? new Date(data.goal.end_date).toISOString().slice(0, 10) : ""}
+                          name="due_date"
+                          id="due_date"
                           className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
                           validation={{ required: true }}
                         />
@@ -251,4 +189,4 @@ const GoalEditPage = ({id}) => {
   );
 };
 
-export default GoalEditPage;
+export default ResultCreatePage;

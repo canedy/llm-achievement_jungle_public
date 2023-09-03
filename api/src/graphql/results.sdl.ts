@@ -27,8 +27,6 @@ export const schema = gql`
     description: String!
     status: Status!
     due_date: DateTime!
-    created_at: DateTime!
-    updated_at: DateTime!
   }
 
   input UpdateResultInput {
@@ -36,8 +34,6 @@ export const schema = gql`
     description: String
     status: Status
     due_date: DateTime
-    created_at: DateTime
-    updated_at: DateTime
   }
 
   type Mutation {

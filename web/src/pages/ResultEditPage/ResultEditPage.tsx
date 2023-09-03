@@ -6,40 +6,37 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useRef, useState } from 'react'
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
 
-import { GetGoalQuery, UpdateGoalMutation, UpdateGoalMutationVariables} from 'types/graphql'
+import { GetResultQuery, UpdateResultMutation, UpdateResultMutationVariables} from 'types/graphql'
 
-const GET_GOAL = gql`
-query GetGoalQuery($id: Int!) {
-  goal(id: $id) {
+const GET_RESULT = gql`
+query GetResultQuery($id: Int!) {
+  result(id: $id) {
     id
+    goal_id
     description
     status
-    start_date
-    end_date
-    type
+    due_date
   }
 }
 `;
 
-const UPDATE_GOAL = gql`
-  mutation UpdateGoalMutation($id: Int!, $input: UpdateGoalInput!) {
-    updateGoal(id: $id, input: $input) {
+const UPDATE_RESULT = gql`
+  mutation UpdateResultMutation($id: Int!, $input: UpdateResultInput!) {
+    updateResult(id: $id, input: $input) {
       id
+      goal_id
       description
       status
-      start_date
-      end_date
-      type
+      due_date
     }
   }
 `;
 
-const GoalEditPage = ({id}) => {
+const ResultEditPage = ({id, goalId}) => {
 
+    const { data, loading, error } = useQuery(GET_RESULT, { variables: { id } });
+    const [updateResult, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(UPDATE_RESULT);
 
-    const { data, loading, error } = useQuery(GET_GOAL, { variables: { id } });
-    const [updateGoal, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(UPDATE_GOAL);
-    
     if (loading) {
       return <div>Loading...</div>;
     }
@@ -54,23 +51,24 @@ const GoalEditPage = ({id}) => {
       console.log("input", { ...input });
       
       try {
-        await updateGoal({ variables: { id: parseInt(id), input: rest } });
-        // await updateGoal({ variables: { id: data?.goal?.id, input: data } });
-        console.log("Goal updated successfully!");
-        navigate(routes.goals());
-        // You can add any other logic here, like navigating the user to another page.
+        await updateResult({ variables: { id: parseInt(id), input: rest } });
+        navigate(routes.results({id: goalId}));
       } catch (err) {
-        console.error("Error updating goal:", err);
+        console.error("Error updating result:", err);
       }
   }
 
+  console.log(goalId)
+
   const pages = [
-    { name: 'Goals', to: routes.goals(), current: true }
+    { name: 'Goals', to: routes.goals(), current: false},
+    { name: 'Results', to: routes.results({id: goalId}), current: true }
+    
   ]
 
   return (
     <>
-      <MetaTags title="GoalEdit" description="GoalEdit page" />
+      <MetaTags title="ResultEdit" description="ResultEdit page" />
 
       <nav className="flex pb-8" aria-label="Breadcrumb">
 
@@ -112,10 +110,10 @@ const GoalEditPage = ({id}) => {
           
                   <Form onSubmit={onSave}>
                     <FormError
-                      error={mutationError || mutationData?.updateGoal?.errors}
+                      error={mutationError || mutationData?.updateResult?.errors}
                     />     
 
-                    <HiddenField name="id" defaultValue={data.goal.id} />                  
+                    <HiddenField name="id" defaultValue={data.result.id} />                  
 
                     <div className="p-4">
                       <label 
@@ -128,7 +126,7 @@ const GoalEditPage = ({id}) => {
                         <TextField 
                           name="description" 
                           id="description"
-                          defaultValue={data.goal.description}
+                          defaultValue={data.result.description}
                           className="w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50"
                           validation={{ required: true }}
                         />
@@ -146,7 +144,7 @@ const GoalEditPage = ({id}) => {
                         <SelectField 
                           name="status"
                           id="status"
-                          defaultValue = {data.goal.status}
+                          defaultValue = {data.result.status}
                           className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
                         >
                           <option value="" disabled hidden>Select Status</option>
@@ -157,65 +155,18 @@ const GoalEditPage = ({id}) => {
                       </div>
                     </div>
 
-
-                    <div className="p-4">
-                      <label 
-                        htmlFor="type" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Type of Goal:
-                      </label>
-                      <div className="mt-1 relative rounded-md shadow-sm">
-                        <SelectField 
-                          name="type"
-                          id="type"
-                          defaultValue = {data.goal.status}
-                          className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-                        >
-                          <option value="" disabled hidden>Select Status</option>
-                          <option value="Personal">Personal</option>
-                          <option value="Professional">Professional</option>
-                          <option value="Physical">Physical</option>
-                          <option value="Mental_Health">Mental Health</option>
-                          <option value="Financial">Financial</option>
-                          <option value="relationships">Relationships</option>
-                          <option value="Spiritual">Spiritual</option>
-                          <option value="Social">Social</option>
-                          <option value="Other">Other</option>
-                        </SelectField>
-                      </div>
-                    </div>
-
                     <div className="p-4">
                     <label 
-                        htmlFor="start_date" 
+                        htmlFor="due_date" 
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
-                        Start Date:
+                        Due Date:
                       </label>
                       <div className="mt-1 relative rounded-md shadow-sm">
                         <DateField 
-                          name="start_date"
-                          id="start_date"
-                          defaultValue = {data?.goal?.start_date ? new Date(data.goal.start_date).toISOString().slice(0, 10) : ""}
-                          className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-                          validation={{ required: true }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="p-4">
-                    <label 
-                        htmlFor="end_date" 
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        End Date:
-                      </label>
-                      <div className="mt-1 relative rounded-md shadow-sm">
-                        <DateField 
-                          name="end_date"
-                          id="end_date"
-                          defaultValue = {data?.goal?.end_date ? new Date(data.goal.end_date).toISOString().slice(0, 10) : ""}
+                          name="due_date"
+                          id="due_date"
+                          defaultValue = {data?.result?.due_date ? new Date(data.result.due_date).toISOString().slice(0, 10) : ""}
                           className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
                           validation={{ required: true }}
                         />
@@ -251,4 +202,4 @@ const GoalEditPage = ({id}) => {
   );
 };
 
-export default GoalEditPage;
+export default ResultEditPage;
