@@ -23,25 +23,19 @@ export const schema = gql`
   }
 
   input CreateActionInput {
-    id: Int!
     result_id: Int
     description: String!
     note: String
     status: Status!
     date_achieved: DateTime
-    created_at: DateTime!
-    updated_at: DateTime!
   }
 
   input UpdateActionInput {
-    id: Int
     result_id: Int
     description: String
     note: String
     status: Status
     date_achieved: DateTime
-    created_at: DateTime
-    updated_at: DateTime
   }
 
   type Mutation {

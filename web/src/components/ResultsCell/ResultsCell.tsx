@@ -58,7 +58,7 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
 
   useEffect(() => {
     setResults(goal.result);
-  }, [goal.Result]);
+  }, [goal.result]);
   
   const getStatusClasses = (status: string) => {
     switch (status) {

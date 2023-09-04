@@ -51,14 +51,12 @@ const ActionsPage = ({id}: Props) => {
               Create Result with AI <span className="text-xs text-gray-300 italic py-1 ml-auto">coming soon</span>
             </button>
   
-            <button
-                type="button"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                
-                onClick={() => setOpen(true)}
-              >
-                Create Manual Action
-            </button>
+            <Link 
+              to={routes.actionCreate({resultId: id})}                              
+              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+              Create Manual Goal
+            </Link>
   
               {/* {showModal && ( */}
               <Transition.Root show={open} as={Fragment}>

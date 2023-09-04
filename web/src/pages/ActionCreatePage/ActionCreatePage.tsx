@@ -1,20 +1,172 @@
-import { Link, routes } from "@redwoodjs/router";
-import { MetaTags } from "@redwoodjs/web";
+import { Link, routes, navigate, back  } from "@redwoodjs/router";
+import { MetaTags,useQuery, useMutation  } from "@redwoodjs/web";
 
-const ActionCreatePage = () => {
+import { Form, FormError, TextField, DateField, SelectField, Submit, HiddenField, TextAreaField  } from '@redwoodjs/forms'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useRef, useState } from 'react'
+import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
+
+import { CreateActionMutation, CreateActionMutationVariables} from 'types/graphql'
+import { toast, Toaster } from '@redwoodjs/web/toast'
+
+const CREATE_ACTION = gql`
+  mutation CreateActionMutation($input: CreateActionInput!) {
+    createAction(input: $input) {
+      id
+      result_id
+      description
+      note
+      status
+      date_achieved
+    }
+  }
+`;
+
+const ActionCreatePage = ({id, resultId}) => {
+  console.log("resultId", resultId)
+  
+  const [createAction, { data, error }] = useMutation(CREATE_ACTION);
+  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  
+  const onSave= async (input) => {
+
+    delete input.id;
+    if (input.result_id) {
+      input.result_id = parseInt(input.result_id);
+    }
+    // const { id, ...rest } = input;
+    
+    try {
+      await createAction({ variables: { input } });
+      toast.success('New action created!', {duration: 6000})   
+      
+      navigate(routes.actions({id: resultId}), { replace: true });
+    } catch (err) {
+      console.error("Error updating action:", err);
+    }
+  }
+
   return (
     <>
-      <MetaTags title="ActionCreate" description="ActionCreate page" />
+      <MetaTags title="ActionEdit" description="Actiondit page" />
+      <Toaster />
 
-      <h1>ActionCreatePage</h1>
-      <p>
-        Find me in{" "}
-        <code>./web/src/pages/ActionCreatePage/ActionCreatePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>actionCreate</code>, link to me with `
-        <Link to={routes.actionCreate()}>ActionCreate</Link>`
-      </p>
+      <div className="mt-8 flow-root">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div className="overflow-hidden shadow ring-1 ring-black bg-gray-100 ring-opacity-5 sm:rounded-lg">
+
+              <div>
+                <div className="border-gray-900/10 pb-12">
+          
+                  <Form onSubmit={onSave}>
+                    <FormError
+                      error={error}
+                      wrapperClassName="bg-red-100 text-red-900 text-sm font-bold p-3 mb-4 rounded-md"
+                      titleClassName="font-bold"
+                      listClassName="mt-2 list-disc list-inside"
+                    />              
+
+                    <HiddenField name="result_id" defaultValue={parseInt(resultId)} />
+                    
+                    <div className="p-4">
+                      <label 
+                        htmlFor="description" 
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Description:
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <TextField 
+                          name="description" 
+                          id="description"
+                          className="w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50"
+                          validation={{ required: true }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="p-4">
+                      <label 
+                        htmlFor="notes" 
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Notes:
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <TextAreaField 
+                          name="note" 
+                          id="note"
+                          className="w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50"
+                          validation={{ required: true }}
+                        />
+                      </div>
+                    </div>                    
+
+                    <div className="p-4">
+                      <label 
+                        htmlFor="status" 
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Status:
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <SelectField 
+                          name="status"
+                          id="status"
+                          className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
+                        >
+                          <option value="" disabled hidden>Select Status</option>
+                          <option value="NotStarted">Not Started</option>
+                          <option value="InProgress">In Progress</option>
+                          <option value="Complete">Complete</option>
+                        </SelectField>
+                      </div>
+                    </div>
+
+                    <div className="p-4">
+                    <label 
+                        htmlFor="date_achieved" 
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Date Achieved:
+                      </label>
+                      <div className="mt-1 relative rounded-md shadow-sm">
+                        <DateField 
+                          name="date_achieved"
+                          id="date_achieved"
+                          className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
+                          validation={{ required: false }}
+                        />
+                      </div>
+                    </div>                    
+
+                    <div className="mt-6 mx-6 flex items-center justify-end gap-x-6">
+                      <button 
+                        type="button" 
+                        className="text-lg font-semibold leading-6 text-gray-900"
+                        onClick={() => { back() }}
+                      >
+                        Cancel
+                      </button>
+                      <Submit 
+                        className="rounded-md bg-indigo-600 px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
+                        Save
+                      </Submit>
+                    </div>
+
+                  </Form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </>
   );
 };
