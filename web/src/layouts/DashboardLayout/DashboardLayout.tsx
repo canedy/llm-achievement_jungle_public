@@ -1,4 +1,5 @@
-import { Link, routes } from '@redwoodjs/router'
+import { Link, NavLink, routes } from '@redwoodjs/router'
+import { useAuth } from 'src/auth';
 
 type DashboardLayoutProps = {
   children?: React.ReactNode;
@@ -6,40 +7,9 @@ type DashboardLayoutProps = {
 
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  Cog6ToothIcon,
-  UsersIcon,
-  ChatBubbleLeftRightIcon,
-  XMarkIcon,
-  EnvelopeOpenIcon,
-  PencilSquareIcon,
-  ArrowLeftOnRectangleIcon,
-  GiftIcon,
-} from '@heroicons/react/24/outline'
+import { Bars3Icon, CalendarIcon, HomeIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, XMarkIcon, PencilSquareIcon, ArrowLeftOnRectangleIcon, GiftIcon } from '@heroicons/react/24/outline'
 
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true, live: true},
-  { name: 'Goals', href: '/goals', icon: PencilSquareIcon, current: false, live: true},
-  { name: 'Chat', href: '/chat', icon: ChatBubbleLeftRightIcon, current: false, live: false},
-  { name: 'Hot 3 Actions', href: '#', icon: CalendarIcon, current: false, live: false},
-  { name: 'Show Appreciation', href: '#', icon: GiftIcon, current: false, live: false},
-  { name: 'Settings', href: '/contact-us', icon: Cog6ToothIcon, current: false, live: false},
-  { name: 'Log out', href: '#', icon: ArrowLeftOnRectangleIcon, current: false, live: true},
-  // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false, live: true},
-  // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false, live: true},
-]
-const teams = [
-  { id: 1, name: 'Sarah Smith', href: '#', initial: 'SS', current: false },
-  { id: 2, name: 'Alex Johnson', href: '#', initial: 'AJ', current: false },
-  { id: 3, name: 'Emily Brown', href: '#', initial: 'EB', current: false },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -47,6 +17,26 @@ function classNames(...classes) {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
+  const navigation = [
+    { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon, current: true, live: true},
+    { name: 'Goals', to: routes.goals(), icon: PencilSquareIcon, current: false, live: true},
+    { name: 'Chat', to: routes.chat(), icon: ChatBubbleLeftRightIcon, current: false, live: false},
+    { name: 'Hot 3 Actions', to: "", icon: CalendarIcon, current: false, live: false},
+    { name: 'Show Appreciation', to: "", icon: GiftIcon, current: false, live: false},
+    { name: 'Settings', to: "", icon: Cog6ToothIcon, current: false, live: false},
+    { name: 'Log out', to: "", icon: ArrowLeftOnRectangleIcon, current: false, live: true},
+  ]
+  const teams = [
+    { id: 1, name: 'Sarah Smith', href: '#', initial: 'SS', current: false },
+    { id: 2, name: 'Alex Johnson', href: '#', initial: 'AJ', current: false },
+    { id: 3, name: 'Emily Brown', href: '#', initial: 'EB', current: false },
+  ]
+
+  
+  const { currentUser } = useAuth()
+
+  const email = currentUser.email
+  
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -174,19 +164,21 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-800 text-white'
-                              : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                          )}
-                        >
+                        <NavLink
+                          // href={item.href}
+                          activeClassName="activeLink bg-gray-800 text-white" 
+                          className="link text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          // className={classNames(
+                          //   item.current
+                          //     ? 'bg-gray-800 text-white'
+                          //     : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                          //   'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          // )} 
+                          to={item.to}                        >
                           <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                           {item.name}
                           {item.live || ( <span className="text-xs text-gray-500 italic py-1 ml-auto">coming soon</span> )}
-                        </a>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
@@ -225,7 +217,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Bruce Canedy</span>
+                    <span aria-hidden="true">{email}</span>
+                    
                   </a>
                 </li>
               </ul>

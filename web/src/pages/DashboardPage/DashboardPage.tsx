@@ -17,24 +17,24 @@ const DashboardPage = () => {
     {
       name: 'Goals',
       description: 'What are you trying to accomplish?',
-      href: '#',
+      to: routes.goals(),
       iconColor: 'bg-pink-500',
       icon: MegaphoneIcon,
     },
-    {
-      name: 'Results',
-      description: 'Walk me through your plan to achieve your objective.',
-      href: '#',
-      iconColor: 'bg-purple-500',
-      icon: CommandLineIcon,
-    },
-    {
-      name: 'Actions',
-      description: 'Show me the team members that will help you achieve your objective.',
-      href: '#',
-      iconColor: 'bg-yellow-500',
-      icon: CalendarIcon,
-    },
+    // {
+    //   name: 'Results',
+    //   description: 'Walk me through your plan to achieve your objective.',
+    //   to: routes.results(),
+    //   iconColor: 'bg-purple-500',
+    //   icon: CommandLineIcon,
+    // },
+    // {
+    //   name: 'Actions',
+    //   description: 'Show me the team members that will help you achieve your objective.',
+    //   to: routes.actions(),
+    //   iconColor: 'bg-yellow-500',
+    //   icon: CalendarIcon,
+    // },
   ]
   
 
@@ -62,10 +62,14 @@ const DashboardPage = () => {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="text-sm font-medium text-gray-900">
-                  <a href={item.href}>
+                  <Link to={item.to}>
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {item.name}
+                  </Link>
+                  {/* <a href={item.href}>
                     <span className="absolute inset-0" aria-hidden="true" />
                     {item.name}
-                  </a>
+                  </a> */}
                 </div>
                 <p className="text-sm text-gray-500">{item.description}</p>
               </div>
