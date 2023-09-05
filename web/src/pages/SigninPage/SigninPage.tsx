@@ -15,6 +15,7 @@ const SigninPage = () => {
         email: data.email, password: data.password,
         authMethod: 'password'
       })
+      console.log(response)
       response?.error?.message ? setError(response.error.message) : navigate(routes.dashboard())
     } catch(error) {
       setError(error.message)
