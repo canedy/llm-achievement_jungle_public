@@ -1,6 +1,6 @@
 import { MetaTags } from "@redwoodjs/web";
 import { Form, Label, TextField, PasswordField, FieldError, Submit, } from '@redwoodjs/forms'
-import { routes, navigate } from '@redwoodjs/router'
+import { routes, navigate, Link } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
 const SignupPage = () => {
@@ -99,7 +99,7 @@ const SignupPage = () => {
               </div>
             </Form>
 
-            <div>
+            {/* <div>
               <div className="relative mt-10">
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
                   <div className="w-full border-t border-gray-200" />
@@ -134,14 +134,14 @@ const SignupPage = () => {
                   <span className="text-sm font-semibold leading-6">GitHub</span>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
+            Already have an account?{' '}
+            <Link to={routes.signin()} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Sign in
+            </Link>
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { MetaTags } from "@redwoodjs/web";
 import { Form, Label, TextField, PasswordField, FieldError, Submit, } from '@redwoodjs/forms'
-import { routes, navigate } from '@redwoodjs/router'
+import { routes, navigate, Link } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
 const SigninPage = () => {
@@ -56,7 +56,7 @@ const SigninPage = () => {
               />
               <FieldError name="email" className="error-message" />
 
-              <Label name="Password" className="label" errorClassName="label error" />
+              <Label name="Password" className="label block text-sm font-medium leading-6 text-gray-900" errorClassName="label error" />
               <PasswordField
                 name="password"
                 className="input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -97,16 +97,16 @@ const SigninPage = () => {
             </Form>
 
             <div>
-              <div className="relative mt-10">
+              {/* <div className="relative mt-10">
                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
                   <div className="w-full border-t border-gray-200" />
                 </div>
                 <div className="relative flex justify-center text-sm font-medium leading-6">
                   <span className="bg-white px-6 text-gray-900">Or continue with</span>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="mt-6 grid grid-cols-2 gap-4">
+              {/* <div className="mt-6 grid grid-cols-2 gap-4">
                 <a
                   href="#"
                   className="flex w-full items-center justify-center gap-3 rounded-md bg-[#1D9BF0] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
@@ -130,15 +130,15 @@ const SigninPage = () => {
                   </svg>
                   <span className="text-sm font-semibold leading-6">GitHub</span>
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
+            Don't have an account{' '}
+            <Link to={routes.signup()} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Sign Up
+            </Link>
           </p>
         </div>
       </div>
