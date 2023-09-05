@@ -39,7 +39,7 @@ export const deleteAction: MutationResolvers["deleteAction"] = ({ id }) => {
 };
 
 export const Action: ActionRelationResolvers = {
-  result: (_obj, { root }) => {
+  results: (_obj, { root }) => {
     return db.action.findUnique({ where: { id: root?.id } }).result();
   },
 };

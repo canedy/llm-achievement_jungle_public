@@ -8,7 +8,7 @@ export const schema = gql`
     date_achieved: DateTime
     created_at: DateTime!
     updated_at: DateTime!
-    result: Result
+    results: Result
   }
 
   enum Status {

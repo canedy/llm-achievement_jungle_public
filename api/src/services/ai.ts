@@ -16,10 +16,10 @@ const parser = StructuredOutputParser.fromZodSchema(
             .describe('this is a description of an the objective that I am trying to achieve for a given time frame.'),
         type: z
             .string()
-            .describe('this is the current type based on goal, result, and actions. Determine which of the following types to apply. (i.e. Company, Development, Training, Networking, Personal'),
+            .describe('this is the current type based on goal, result, and actions. Determine which of the following types to apply. (i.e. Personal,Professional,Physical,Mental_Health,Financial,Relationships,Spiritual,Social,Other)'),
         status: z
             .string()
-            .describe('this is current status of the objective. Should always be NotStarted'),
+            .describe('this is current status of the objective. Should always be NotStarted.'),
         startDate: z
             .date()
             .describe('this will be start date of object. If no time period is given use 2023. Use the MM/DD/YYYY format'),
@@ -88,6 +88,7 @@ export const createAi = async (message: { prompt: string }) => {
             status: obj.status,
             start_date: new Date(),
             end_date: new Date(),
+            user_id: context.currentUser.sub
         },
     })
 

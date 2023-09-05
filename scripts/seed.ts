@@ -4,7 +4,7 @@ import { db } from 'api/src/lib/db'
 export default async () => {
   try {
     // const goals: Prisma.GoalCreateArgs['data'][] = [
-    //   { id: 1, type: 'Company', description: 'Graduate with a PhD in Artificial Intelligence or Machine Learning', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
+    //   { id: 1, type: 'Professional', description: 'Graduate with a PhD in Artificial Intelligence or Machine Learning', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
     // ]
 
     // console.log('Seeding Goals ...')
@@ -56,7 +56,7 @@ export default async () => {
 
 
     const goals: Prisma.GoalCreateArgs['data'][] = [
-      { id: 2, type: 'Company', description: 'Become a pilot by and fly cross country solo by July 4, 2028', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
+      { id: 2, type: 'Professional', description: 'Become a pilot by and fly cross country solo by July 4, 2028', status: 'InProgress', start_date: new Date("2023-01-01"), end_date: new Date("2023-12-31") }
     ]
 
     console.log('Seeding Goals ...')

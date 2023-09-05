@@ -8,15 +8,19 @@ export const schema = gql`
     end_date: DateTime!
     created_at: DateTime
     updated_at: DateTime
-    result: [Result]!
+    results: [Result]!
   }
 
   enum ObjectiveType {
-    Company
-    Development
-    Training
-    Networking
     Personal
+    Professional
+    Physical
+    Mental_Health
+    Financial
+    relationships
+    Spiritual
+    Social
+    Other
   }
 
   enum Status {

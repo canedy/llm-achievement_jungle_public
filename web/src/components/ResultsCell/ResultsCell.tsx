@@ -10,7 +10,7 @@ export const QUERY = gql`
     goal: goal(id: $id) {
       id
       description,
-      result: result {
+      results: results {
         id
         description
         status
@@ -57,8 +57,8 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    setResults(goal.result);
-  }, [goal.result]);
+    setResults(goal.results);
+  }, [goal.results]);
   
   const getStatusClasses = (status: string) => {
     switch (status) {
@@ -145,7 +145,7 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
                       
-                      {results.map((res) => (
+                      {goal.results.map((res) => (
                         <tr key={res.id}>
 
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">

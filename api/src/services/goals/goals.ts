@@ -7,7 +7,7 @@ import type {
 import { db } from "src/lib/db";
 
 export const goals: QueryResolvers["goals"] = () => {
-  return db.goal.findMany();
+  return db.goal.findMany({ where: { user_id: context.currentUser.sub } });
 };
 
 export const goal: QueryResolvers["goal"] = ({ id }) => {
@@ -18,7 +18,7 @@ export const goal: QueryResolvers["goal"] = ({ id }) => {
 
 export const createGoal: MutationResolvers["createGoal"] = ({ input }) => {
   return db.goal.create({
-    data: input,
+    data: { ...input, user_id: context.currentUser.sub },
   });
 };
 
@@ -36,7 +36,7 @@ export const deleteGoal: MutationResolvers["deleteGoal"] = ({ id }) => {
 };
 
 export const Goal: GoalRelationResolvers = {
-  result: (_obj, { root }) => {
-    return db.goal.findUnique({ where: { id: root?.id } }).result();
+  results: (_obj, { root }) => {
+    return db.goal.findUnique({ where: { id: root?.id } }).results();
   },
 };
