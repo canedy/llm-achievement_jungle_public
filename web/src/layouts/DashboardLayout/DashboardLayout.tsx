@@ -17,6 +17,8 @@ function classNames(...classes) {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
+  const { logOut } = useAuth()
+
   const navigation = [
     { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon, current: true, live: true},
     { name: 'Goals', to: routes.goals(), icon: PencilSquareIcon, current: false, live: true},
@@ -24,7 +26,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: 'Hot 3 Actions', to: "", icon: CalendarIcon, current: false, live: false},
     { name: 'Show Appreciation', to: "", icon: GiftIcon, current: false, live: false},
     { name: 'Settings', to: "", icon: Cog6ToothIcon, current: false, live: false},
-    { name: 'Log out', to: "", icon: ArrowLeftOnRectangleIcon, current: false, live: true},
+    // { name: 'Log out', to: logOut(), icon: ArrowLeftOnRectangleIcon, current: false, live: true},
   ]
   const teams = [
     { id: 1, name: 'Sarah Smith', href: '#', initial: 'SS', current: false },
@@ -98,21 +100,25 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-gray-800 text-white'
-                                      : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}
-                                >
+                                <NavLink
+                                  activeClassName="activeLink bg-gray-800 text-white" 
+                                  className="link text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                  to={item.to}                        >
                                   <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                                   {item.name}
                                   {item.live || ( <span className="text-xs text-gray-500 italic py-1 ml-auto">coming soon</span> )}
-                                </a>
+                                </NavLink>
                               </li>
                             ))}
+                            <li>
+                              <button
+                                type="button"
+                                className="link text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                onClick={() => logOut()} >
+                                <ArrowLeftOnRectangleIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                                Log out 
+                            </button>
+                          </li>
                           </ul>
                         </li>
                         <li>
@@ -165,24 +171,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     {navigation.map((item) => (
                       <li key={item.name}>
                         <NavLink
-                          // href={item.href}
                           activeClassName="activeLink bg-gray-800 text-white" 
                           className="link text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                          // className={classNames(
-                          //   item.current
-                          //     ? 'bg-gray-800 text-white'
-                          //     : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                          //   'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                          // )} 
                           to={item.to}                        >
                           <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
                           {item.name}
                           {item.live || ( <span className="text-xs text-gray-500 italic py-1 ml-auto">coming soon</span> )}
                         </NavLink>
                       </li>
-                    ))}
+                    ))}              
+                    <li>
+                      <button
+                        type="button"
+                        className="link text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        onClick={() => logOut()} >
+                        <ArrowLeftOnRectangleIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                        Log out 
+                      </button>
+                    </li>
                   </ul>
                 </li>
+                
                 <li>
                   <div className="text-xs font-semibold leading-6 text-gray-400">Your team <span className="text-xs text-gray-500 italic py-1 px-4">coming soon</span></div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
