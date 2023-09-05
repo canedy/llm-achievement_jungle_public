@@ -21,7 +21,7 @@ const Routes = () => {
       <Route notfound page={NotFoundPage} />
 
       
-      <Private unauthenticated="home">
+      {/* <Private unauthenticated="home"> */}
         <Set wrap={DashboardLayout}>
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
 
@@ -40,7 +40,7 @@ const Routes = () => {
           <Route path="/chat" page={ChatPage} name="chat" />
           <Route path="/contact-us" page={ContactUsPage} name="contactUs" />
         </Set>
-      </Private>
+      {/* </Private> */}
       
     </Router>
   )
