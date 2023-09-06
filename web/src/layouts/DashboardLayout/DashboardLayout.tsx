@@ -8,6 +8,7 @@ type DashboardLayoutProps = {
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, CalendarIcon, HomeIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, XMarkIcon, PencilSquareIcon, ArrowLeftOnRectangleIcon, GiftIcon } from '@heroicons/react/24/outline'
+import { UserCircleIcon } from '@heroicons/react/24/solid'
 
 
 
@@ -220,11 +221,12 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     href="#"
                     className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
                   >
-                    <img
+                    <UserCircleIcon className="h-8 w-8 rounded-full bg-gray-800" aria-hidden="true" />
+                    {/* <img
                       className="h-8 w-8 rounded-full bg-gray-800"
                       src="../../../assets/profiles/bruce_canedy_profile.png"
                       alt=""
-                    />
+                    /> */}
                     <span className="sr-only">Your profile</span>
                     <span aria-hidden="true">{email}</span>
                     
@@ -240,14 +242,15 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
+          <div className="flex-1 text-sm font-semibold leading-6 text-white">Employee Review Co-pilot</div>
           <a href="#">
             <span className="sr-only">Your profile</span>
-            <img
+            <UserCircleIcon className="h-8 w-8 rounded-full bg-white" aria-hidden="true" />
+            {/* <img
               className="h-8 w-8 rounded-full bg-gray-800"
               src="../../../assets/profiles/bruce_canedy_profile.png"
               alt=""
-            />
+            /> */}
           </a>
         </div>
 

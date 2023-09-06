@@ -16,10 +16,10 @@ interface Props {
   id: number
 }
 
-const ActionsPage = ({id}: Props) => {
+const ActionsPage = ({id, goalId}) => {
   const pages = [
     { name: 'Goals', to: routes.goals(), current: false },
-    { name: 'Results', to: routes.results({id}), current: false },
+    { name: 'Results', to: routes.results({id: goalId}), current: false },
     { name: 'Actions', to: routes.actions({id}), current: true },
   ]
 

@@ -5,10 +5,10 @@ import { useAuth } from 'src/auth'
 
 const SignupPage = () => {
 
-  const { client } = useAuth()
+  const { client, logIn } = useAuth()
   const [error, setError] = React.useState(null)
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: { email: any; password: any; }) => {
     setError(null)
 
     try {
@@ -16,8 +16,14 @@ const SignupPage = () => {
         email: data.email,
         password: data.password
       })
-      console.log('response: ', response)
-      response?.error?.message ? setError(response.error.message) : navigate(routes.dashboard())
+
+      const loginResponse = await logIn({
+        email: data.email, password: data.password,
+        authMethod: 'password'
+      })
+
+      loginResponse?.error?.message ? setError(loginResponse.error.message) : navigate(routes.dashboard())
+      
     } catch(error) {
       console.log('error:  ', error)
       setError(error.message)
@@ -87,15 +93,11 @@ const SignupPage = () => {
                   </a>
                 </div>
               </div>
+            <div>    
+                <Submit className="cflex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Sign up
+                </Submit>
 
-              <div>    
-
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign Up
-                </button>
               </div>
             </Form>
 

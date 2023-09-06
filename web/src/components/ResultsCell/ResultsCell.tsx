@@ -150,7 +150,7 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
 
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                           <Link
-                              to={routes.actions({id: res.id})}
+                              to={routes.actionsToResults({id: res.id, goalId: goal.id})}
                               className="text-indigo-600 hover:text-indigo-900"
                             >
                               {res.description}<span className="sr-only">, {}</span>
