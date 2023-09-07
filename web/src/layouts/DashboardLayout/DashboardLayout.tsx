@@ -194,7 +194,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 </li>
                 
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">Your team <span className="text-xs text-gray-500 italic py-1 px-4">coming soon</span></div>
+                  <div className="text-xs font-semibold leading-6 text-gray-400">The Team <span className="text-xs text-gray-500 italic py-1 px-4">coming soon</span></div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>

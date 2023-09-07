@@ -48,14 +48,14 @@ const ActionsPage = ({id, goalId}) => {
               type="button"
               className="block mr-5 rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"        
             >
-              Create Result with AI <span className="text-xs text-gray-300 italic py-1 ml-auto">coming soon</span>
+              Create Action with AI <span className="text-xs text-gray-300 italic py-1 ml-auto">coming soon</span>
             </button>
   
             <Link 
               to={routes.actionCreate({resultId: id})}                              
               className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
-              Create Manual Result
+              Create Action Result
             </Link>
   
               {/* {showModal && ( */}

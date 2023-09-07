@@ -1,30 +1,30 @@
 import { Link, routes } from "@redwoodjs/router";
 import { MetaTags } from "@redwoodjs/web";
 
-import { ChevronRightIcon, ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon  } from '@heroicons/react/20/solid'
+import { ChevronRightIcon, ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon, CurrencyDollarIcon, UserGroupIcon  } from '@heroicons/react/20/solid'
 import Routes from "src/Routes";
 
 const features = [
   {
-    name: 'Goals, Results, Actions',
+    name: 'Year-long Memories, One Platform',
     description:
-      'TODO : Need some copy here',
+      'Revisit comprehensive project histories anytime, fostering transparent and comprehensive reviews all year round.',
     href: '#',
     icon: CloudArrowUpIcon,
   },
   {
-    name: 'AI Assisted Feedback',
+    name: 'Empower Every Review',
     description:
-      'TODO : Need some copy here',
+      "Our platform is more than just a tool—it's your co-pilot. Elevate performance reviews with precise, actionable, and impactful feedback.",
     href: '#',
-    icon: LockClosedIcon,
+    icon: UserGroupIcon,
   },
   {
-    name: 'Analytics',
+    name: 'Earn as You Collaborate',
     description:
-      'TODO : Need some copy here',
+      'Celebrate every achievement! Engage, connect, and earn tokens for every positive interaction. Spend, save, or share—how you reap your rewards is up to you!',
     href: '#',
-    icon: ArrowPathIcon,
+    icon: CurrencyDollarIcon,
   },
 ]
 
@@ -91,22 +91,21 @@ const HomePage = () => {
                 What's new
               </span>
               <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
-                <span>Just shipped v1.0</span>
+                <span>Just shipped Alpha</span>
                 <ChevronRightIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
               </span>
             </a>
           </div>
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-           Empower Your Path to Excellence
+          Unveil the Future of Teamwork with <br/>"The Collaborator"
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Employee Review Co-pilot is designed to help managers and employees 
-            conduct performance reviews by providing a holistic, accurate view of contributions, achievements, and areas 
-            of development over a span of a year. This platform aims to make annual reviews more actionable, meaningful, and objective
-            utilizing constant assisted feedback.
+            Transform every conversation into actionable insights. Dive into a dynamic platform that effortlessly bridges the gap between managers and their teams. With our AI-driven chat, discover smart recommendations tailored for your projects in real-time.
           </p>
           <div className="mt-10 flex items-center gap-x-6">
-            <Link to={routes.signin()} className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</Link>
+            <Link to={routes.signin()} className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
+            👉 Dive In & Experience Seamless Collaboration Today!
+            </Link>
             <a href="#learnMore" className="text-sm font-semibold leading-6 text-white">
               Learn more <span aria-hidden="true">→</span>
             </a>
@@ -134,7 +133,7 @@ const HomePage = () => {
             Everything you need to understand for your next performance review
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            TODO : Need some copy here
+            Cultivate Connections, Craft Success
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -148,9 +147,9 @@ const HomePage = () => {
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-300">
                   <p className="flex-auto">{feature.description}</p>
                   <p className="mt-6">
-                    <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-400">
+                    {/* <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-400">
                       Learn more <span aria-hidden="true">→</span>
-                    </a>
+                    </a> */}
                   </p>
                 </dd>
               </div>
