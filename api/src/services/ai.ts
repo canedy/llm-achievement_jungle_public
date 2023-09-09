@@ -13,13 +13,13 @@ const parser = StructuredOutputParser.fromZodSchema(
     z.object({
         description: z
             .string()
-            .describe('this is a description of an the objective that I am trying to achieve for a given time frame.'),
+            .describe('this is a description of the goal that I am trying to achieve for a given time frame.'),
         type: z
             .string()
             .describe('this is the current type based on goal, result, and actions. Determine which of the following types to apply. (i.e. Personal,Professional,Physical,Mental_Health,Financial,Relationships,Spiritual,Social,Other)'),
         status: z
             .string()
-            .describe('this is current status of the objective. Should always be NotStarted.'),
+            .describe('this is current status of the goal. Should always be NotStarted.'),
         startDate: z
             .date()
             .describe('this will be start date of object. If no time period is given use 2023. Use the MM/DD/YYYY format'),
@@ -30,10 +30,10 @@ const parser = StructuredOutputParser.fromZodSchema(
             z.object({
                 description: z
                     .string()
-                    .describe('this is a description of the action associated with the objective.'),
+                    .describe('this is a description of the result associated with the goal.'),
                 status: z
                     .string()
-                    .describe('this is current status of the objective. Should always be NotStarted'),
+                    .describe('this is current status of the goal. Should always be NotStarted'),
                 dueDate: z
                     .date()
                     .describe('this is the date the result is due to meet the main goal end date. If no time period is given use 2023. Use the MM/DD/YYYY format'),                    
@@ -41,15 +41,15 @@ const parser = StructuredOutputParser.fromZodSchema(
                     z.object({
                         description: z
                             .string()
-                            .describe('this is a description of the action associated with the objective.'),
+                            .describe('this is a description of the action associated with the goal.'),
                         status: z
                             .string()
                             .describe('this is current status of the action. Should always be NotStarted')
                     })
-                ).describe('these are the actions associated with the key result. Each action should be completed to achieve the key result. Only one set of actions per key result.')
+                ).describe('these are the actions associated with a result. Generate as many detailed action as you can to complete the desired result.')
             })
-        ).describe('these are the key result each of the objectives are should achieve to show business or personal value.')            
-    }).describe('this is the format for the objectives, key results, and actions that I am trying to achieve for a given time frame.')
+        ).describe('these are the key result each of the goals are should achieve to show business or personal value.')            
+    }).describe('this is the format for the goals, results, and actions that I am trying to achieve. Generate as many results as possible to acieve my goal.')
 )
 
 
@@ -58,9 +58,9 @@ const getPrompt = async (content) => {
 
     const prompt = new PromptTemplate({
         template:
-        `You are an assistant that helps me reach my MBOs or OKRs goals. When generating objectives, key result, and actions the relationship
-        should be a objective can generate many key results and key result has many actions grouped in 4 week intervals when possible. It is
-        okay to suggest additional key results and actions when {entry} already has some. You will prompt me to meet these objectives, results, and achievemnts
+        `You are a achievement coach who a professional that helps others to set and achieve their goals, resutls, and actions. When generating goals, key result, and actions the relationship
+        should be a goal can generate many key results and key result has many actions grouped in 4 week intervals when possible. It is
+        okay to suggest additional key results and actions when {entry} already has some. You will prompt me to meet these goals, results, and achievemnts
         matching the format instruction and format your response to match the format instructions, no matter what! {format_instructions} {entry}`,
         inputVariables: ['entry'],
         partialVariables: { format_instructions },

@@ -110,7 +110,7 @@ export const Success = ({ result }: CellSuccessProps<ResultQuery>) => {
 
   const onDelete = async (id) => {
     await deleteAction({ variables: { id: id } });
-    setActions(prevActions => prevActions.filter(res => res.id !== id));
+    setActions(prevActions => prevActions.filter(res => res.id !== id));;
   } 
 
 
@@ -152,7 +152,7 @@ export const Success = ({ result }: CellSuccessProps<ResultQuery>) => {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 bg-white">
-                        {result.actions.map((action) => (
+                        {actions.map((action) => (
                           <tr key={action.id}>
                          
                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">

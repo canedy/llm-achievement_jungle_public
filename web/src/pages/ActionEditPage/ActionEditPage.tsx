@@ -17,6 +17,13 @@ query GetActionQuery($id: Int!) {
     note
     status
     date_achieved
+    results {
+      id
+      goal {
+        id
+        description
+      }
+    }
   }
 }
 `;
@@ -49,29 +56,28 @@ const ActionEditPage = ({id, resultId}) => {
     
     const onSave= async (input) => {
       const { id, ...rest } = input;
-      console.log("input", { ...input });
-      
+     
       try {
         await updateAction({ variables: { id: parseInt(id), input: rest } });
-        navigate(routes.actions({id: resultId}));
+        // navigate(routes.actions({id: data.action.results.id, goalId: data.action.results.goal.id}));
+        back();
       } catch (err) {
         console.error("Error updating Action:", err);
       }
   }
 
-  console.log(resultId)
 
-  const pages = [
-    { name: 'Goals', to: routes.goals(), current: false},
-    { name: 'Actions', to: routes.actions({id: resultId}), current: true }
+  // const pages = [
+  //   { name: 'Goals', to: routes.goals(), current: false},
+  //   { name: 'Actions', to: routes.actions({id: resultId}), current: true }
     
-  ]
+  // ]
 
   return (
     <>
-      <MetaTags title="ActionEdit" description="ActionEdit page" />
+      <MetaTags title="Action Edit" description="Action Edit page" />
 
-      <nav className="flex pb-8" aria-label="Breadcrumb">
+      {/* <nav className="flex pb-8" aria-label="Breadcrumb">
 
           <ol role="list" className="flex items-center space-x-4">
             <li>
@@ -99,7 +105,7 @@ const ActionEditPage = ({id, resultId}) => {
               </li>
             ))}
           </ol>
-        </nav>
+        </nav> */}
 
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -187,7 +193,7 @@ const ActionEditPage = ({id, resultId}) => {
                           id="date_achieved"
                           defaultValue = {data?.action?.date_achieved ? new Date(data.action.date_achieved).toISOString().slice(0, 10) : ""}
                           className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-                          validation={{ required: true }}
+                          validation={{ required: false }}
                         />
                       </div>
                     </div>                    

@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { Link, routes } from "@redwoodjs/router";
-import { Form, FieldError, FormError, InputField, Label, TextField, PasswordField, Submit, ButtonField, } from '@redwoodjs/forms'
+import { Form, FieldError, FormError, TextAreaField, InputField, Label, TextField, PasswordField, Submit, ButtonField, } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from "@redwoodjs/web";
 import { ChevronRightIcon, HomeIcon} from '@heroicons/react/20/solid'
 import GoalsCell from 'src/components/GoalsCell'
@@ -100,7 +100,7 @@ const GoalsPage = () => {
                           <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} error={error}>
                             <FormError error={error} wrapperClassName="form-error" />
 
-                            <TextField
+                            <TextAreaField
                               name="prompt"
                               className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-6"
                               errorClassName="error"

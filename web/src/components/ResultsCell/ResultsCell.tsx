@@ -97,7 +97,8 @@ export const Success = ({ goal }: CellSuccessProps<GoalQuery>) => {
     DELETE_AI_RESULT, {
       onCompleted: () => {
         toast.success('Result deleted!', {duration: 6000})       
-      }
+      },
+      refetchQueries: [{ query: QUERY, variables: { id: goal.id } }],
     }
   )
 

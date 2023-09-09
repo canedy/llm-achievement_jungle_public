@@ -8,8 +8,6 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 import { DeleteGoalMutation, DeleteGoalMutationVariables } from 'types/graphql'
 import { Dialog, Transition } from '@headlessui/react'
 
-
-
 export const QUERY = gql`
   query GoalsQuery {
     goals {
@@ -55,7 +53,7 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: "red" }}>Error: {error?.message}</div>
 );
 
-export const Success = ({ goals}: CellSuccessProps<GoalsQuery>) => {
+export const Success = ({ goals }: CellSuccessProps<GoalsQuery>) => {
   const [messages, setMessages] = useState([])
   const [open, setOpen] = useState(false)
   const [currentData, setCurrentData] = useState(null)
@@ -107,248 +105,7 @@ export const Success = ({ goals}: CellSuccessProps<GoalsQuery>) => {
     deleteGoal({ variables: { id: id } })
   }
 
-  // const onSave= async (data: { prompt: string; }) => {
-  //   console.log(data) 
-  //   setOpen(false)
-  // }
-
-  // const onSave = async (data: { description: string; status: string; type: string; start_date: string; end_date: string; }) => {
-  //   console.log(data)
-  //   setOpen(false)
-  // }
   
-
-  
-
-//   const editGoal = (id: number) => {
-    
-//     // retrieve data using the id, e.g., someDataArray.find(item => item.id === id)
-//     // const dataToEdit =  goal.findUnique({
-//     //   where: { id },
-//     // });
-//     // setCurrentData(dataToEdit)
-    
-//    return (
-//      <>
-//        <div className="display flex">
-
-//                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-
-//                           <Link 
-//                               to={routes.goals()} 
-//                               className="text-indigo-600 hover:text-indigo-900"
-//                               onClick={() => setOpen(true)}
-//                             >
-//                               Edit
-//                           </Link>
-
-//                             <span> | </span>
-                            
-//                             <Link 
-//                               to={routes.goals()} 
-//                               className="text-indigo-600 hover:text-indigo-900"
-//                               onClick={() => onDelete(id)}
-//                             >
-//                               Delete
-//                             </Link>
-                            
-//                           </td>
-
-//          <Transition.Root show={open} as={Fragment}>
-//            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
-//              <Transition.Child
-//                as={Fragment}
-//                enter="ease-out duration-300"
-//                enterFrom="opacity-0"
-//                enterTo="opacity-100"
-//                leave="ease-in duration-200"
-//                leaveFrom="opacity-100"
-//                leaveTo="opacity-0"
-//              >
-//                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-//              </Transition.Child>
-
-//              <div className="fixed inset-0 z-10 overflow-y-auto">
-//                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-//                  <Transition.Child
-//                    as={Fragment}
-//                    enter="ease-out duration-300"
-//                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-//                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-//                    leave="ease-in duration-200"
-//                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-//                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-//                  >
-//                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
-//                      <div>
-//                        {/* <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 text-xl">
-//                          Let me know your goal. Adding a deadline and the results you looking to achieve will help me to create a plan for you.
-//                        </div> */}
-
-//                        <div className="border-gray-900/10 pb-12">
-                 
-//                          <Form onSubmit={onSave} config={{ mode: 'onBlur' }} error={error}>
-//                            <FormError error={error} wrapperClassName="form-error" />
-
-//                             <div className="p-4">
-//                               <label 
-//                                 htmlFor="description" 
-//                                 className="block text-sm font-medium text-gray-700 mb-2"
-//                               >
-//                                 Description:
-//                               </label>
-//                               <div className="mt-1 relative rounded-md shadow-sm">
-//                                 <TextField 
-//                                   name="description" 
-//                                   id="description"
-//                                   // value = {currentData.description}
-//                                   className="w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50"
-//                                   validation={{ required: true }}
-//                                 />
-//                               </div>
-//                             </div>
-
-
-//                             <div className="p-4">
-//                               <label 
-//                                 htmlFor="status" 
-//                                 className="block text-sm font-medium text-gray-700 mb-2"
-//                               >
-//                                 Status:
-//                               </label>
-//                               <div className="mt-1 relative rounded-md shadow-sm">
-//                                 <SelectField 
-//                                   name="status"
-//                                   id="status"
-//                                   // value = {currentData.status}
-//                                   className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-//                                   defaultValue=""
-//                                 >
-//                                   <option value="" disabled hidden>Select Type</option>
-//                                   <option value="option1">NotStarted</option>
-//                                   <option value="option2">InProgress</option>
-//                                   <option value="option3">Complete</option>
-//                                 </SelectField>
-//                               </div>
-//                             </div>
-
-//                             <div className="p-4">
-//                               <label 
-//                                 htmlFor="status" 
-//                                 className="block text-sm font-medium text-gray-700 mb-2"
-//                               >
-//                                 Status:
-//                               </label>
-//                               <div className="mt-1 relative rounded-md shadow-sm">
-//                                 <SelectField 
-//                                   name="status"
-//                                   id="status"
-//                                   // value = {currentData.status}
-//                                   className="block w-full p-2 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-//                                   defaultValue=""
-//                                 >
-//                                   <option value="" disabled hidden>Select Status</option>
-//                                   <option value="Personal">Personal</option>
-//                                   <option value="Professional">Professional</option>
-//                                   <option value="Physical">Physical</option>
-//                                   <option value="Mental_Health">Mental Health</option>
-//                                   <option value="Financial">Financial</option>
-//                                   <option value="relationships">Relationships</option>
-//                                   <option value="Spiritual">Spiritual</option>
-//                                   <option value="Social">Social</option>
-//                                   <option value="Other">Other</option>
-//                                 </SelectField>
-//                               </div>
-//                             </div>
-
-
-
-//                             <div className="p-4">
-//                             <label 
-//                                 htmlFor="startDate" 
-//                                 className="block text-sm font-medium text-gray-700 mb-2"
-//                               >
-//                                 Start Date:
-//                               </label>
-//                               <div className="mt-1 relative rounded-md shadow-sm">
-//                                 <DateField 
-//                                   name="startDate"
-//                                   id="startDate"
-//                                   // value = {currentData.start_date}
-//                                   className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-//                                   validation={{ required: true }}
-//                                 />
-//                               </div>
-//                             </div>
-
-//                             <div className="p-4">
-//                             <label 
-//                                 htmlFor="startDate" 
-//                                 className="block text-sm font-medium text-gray-700 mb-2"
-//                               >
-//                                 End Date:
-//                               </label>
-//                               <div className="mt-1 relative rounded-md shadow-sm">
-//                                 <DateField 
-//                                   name="startDate"
-//                                   id="startDate"
-//                                   // value = {currentData.start_date}
-//                                   className="block w-full p-3 border rounded shadow-sm focus:ring focus:ring-opacity-50 bg-transparent outline-none"
-//                                   validation={{ required: true }}
-//                                 />
-//                               </div>
-//                             </div>                    
-
-//                             <div className="mt-6 flex items-center justify-end gap-x-6">
-//                               <button 
-//                                 type="button" 
-//                                 className="text-sm font-semibold leading-6 text-gray-900"
-//                                 onClick={() => {
-//                                   // Handle your cancel logic here.
-//                                   console.log('Cancelled');
-//                                 }}
-//                               >
-//                                 Cancel
-//                               </button>
-//                               <Submit 
-//                                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-//                               >
-//                                 Save
-//                               </Submit>
-//                             </div>
-                            
-
-//                            {/* <TextField
-//                              name="username"
-//                              className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-//                              errorClassName="error"
-//                              placeholder="janesmith"
-//                              validation={{
-//                                required: true,
-//                              }}
-//                            />
-//                            <FieldError name="username" className="error my-11" />
-
-//                            <Submit className="col-span-12 lg:col-span-2 w-full
-//                            rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold
-//                            text-white shadow-sm hover:bg-indigo-500 focus-visible:outline 
-//                            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 
-//                            ">Add Goal</Submit> */}
-
-//                          </Form>
-//                        </div>
-//                      </div>
-                     
-//                    </Dialog.Panel>
-//                  </Transition.Child>
-//                </div>
-//              </div>
-//            </Dialog>
-//          </Transition.Root>
-//        </div>
-//      </>    
-//    )
-//  }
   
   return (
     <>
@@ -430,7 +187,6 @@ export const Success = ({ goals}: CellSuccessProps<GoalsQuery>) => {
         </div>
       </div>
 
-      {/* {editGoal(18)} */}
     </>
   )
 };

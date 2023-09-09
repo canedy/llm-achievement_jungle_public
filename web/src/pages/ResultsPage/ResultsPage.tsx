@@ -1,10 +1,10 @@
 import { Fragment, useRef, useState } from 'react';
 import { Link, routes } from "@redwoodjs/router";
-import { MetaTags } from "@redwoodjs/web";
+import { MetaTags, useQuery, useMutation } from "@redwoodjs/web";
 import ResultsCell from 'src/components/ResultsCell'
 
-
-import { Form, InputField, Label, TextField, PasswordField, FieldError, Submit, ButtonField, } from '@redwoodjs/forms'
+import { toast, Toaster } from '@redwoodjs/web/toast'
+import { Form, TextAreaField, InputField, Label, TextField, PasswordField, FieldError, Submit, ButtonField, HiddenField, } from '@redwoodjs/forms'
 
 import Chat from 'src/components/Chat/Chat'
 import { CheckIcon, ArrowRightIcon, ChatBubbleLeftRightIcon,  ChevronLeftIcon, ChevronRightIcon, HomeIcon} from '@heroicons/react/20/solid'
@@ -12,10 +12,33 @@ import Heading from 'src/components/Heading/Heading';
 import AiCell from 'src/components/AiCell'
 import { Dialog, Transition } from '@headlessui/react'
 
+import { CreateAiResultMutation, GoalResultQuery } from 'types/graphql';
+
 
 interface Props {
   id: number
 }
+
+export const QUERY = gql`
+  query GoalResultQuery($id: Int!) {
+    goal: goal(id: $id) {
+      id
+      description
+      results: results {
+        id
+        description
+      }
+    }
+  }
+`;
+
+const CREATE_AI_RESULT = gql`
+  mutation CreateAiResultMutation($prompt: String!, $goalId: Int!, $goalContent: String!) {
+    createAiResult: createAiResult(input: {prompt: $prompt, goalId: $goalId, goalContent: $goalContent}) {
+      result
+    }
+  }
+`;
 
 const ResultsPage = ({id}: Props) => {
 
@@ -24,12 +47,28 @@ const ResultsPage = ({id}: Props) => {
     { name: 'Results', to: routes.results({id}), current: true },
   ]
 
-  const [messages, setMessages] = useState("")
+  // const [messages, setMessages] = useState("")
   const [open, setOpen] = useState(false)
+
+  const { data: queryData, loading: queryLoading, error: queryError } = useQuery(QUERY, { variables: { id } });
+
+  const [create, { loading: mutationLoading, error: mutationError }] = useMutation<CreateAiResultMutation>(
+    CREATE_AI_RESULT, {
+      onError: () => {
+        toast.error(`Error creating result. Please attempt again. ${mutationError}`, {duration: 6000})
+      },
+      onCompleted: () => {
+        toast.success('Thank you for your submission.', {duration: 6000})
+      },
+      refetchQueries: [{ query: QUERY, variables: { id } }]
+    }
+  )
 
   const onSubmit = async (data) => {
     // setMessages((current) => ([...current, data.prompt]))
-    setMessages(data.prompt)
+    
+    create({ variables: { prompt: data.prompt, goalId: id, goalContent: JSON.stringify(queryData.goal.description) } })
+    // setMessages(data.prompt)
     setOpen(false)
   }
 
@@ -40,15 +79,19 @@ const ResultsPage = ({id}: Props) => {
 
     return (
       <>
-        <div className="display flex">
+        <Toaster />
+        
+        {mutationLoading && toast('Whipping up your custom plan. Brace yourself for some goal-setting magic! Notification incoming when done!', { icon: '🚀', duration: 8000,})}
 
+        <div className="display flex">
 
 
           <button
             type="button"
-            className="block mr-5 rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"        
+            className="block mr-5 rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={() => setOpen(true)}
           >
-            Create Result with AI <span className="text-xs text-gray-300 italic py-1 ml-auto">coming soon</span>
+              Create Result with AI
           </button>
 
           <Link 
@@ -87,12 +130,18 @@ const ResultsPage = ({id}: Props) => {
                     >
                       <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                         <div>
-                          {/* Chat Content */}
+                          
+                          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 text-xl">
+                            Let me know your goal. Adding a deadline and the results you looking to achieve will help me to create a plan for you.
+                          </div>                          
 
                           <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-14">
                           <Form onSubmit={onSubmit}>
 
-                          <InputField
+                            <HiddenField name="goalId" value={id} />
+                            
+
+                          <TextAreaField
                             name="prompt"
                             className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-6"
                             errorClassName="input error"
@@ -143,8 +192,6 @@ const ResultsPage = ({id}: Props) => {
   return (
     <>
       <MetaTags title="Results" description="Results page" />
-
-
 
       <div className="px-4 sm:px-6 lg:px-8">
 

@@ -4,9 +4,9 @@ export const schema = gql`
     goal_id: Int!
     description: String!
     status: Status!
-    due_date: DateTime!
-    created_at: DateTime!
-    updated_at: DateTime!
+    due_date: DateTime
+    created_at: DateTime
+    updated_at: DateTime
     actions: [Action]!
     goal: Goal!
   }
@@ -26,7 +26,7 @@ export const schema = gql`
     goal_id: Int!
     description: String!
     status: Status!
-    due_date: DateTime!
+    due_date: DateTime
   }
 
   input UpdateResultInput {

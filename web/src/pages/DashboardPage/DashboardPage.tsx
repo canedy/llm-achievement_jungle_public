@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link, routes } from "@redwoodjs/router";
-import { MetaTags } from "@redwoodjs/web";
+import { MetaTags, useQuery } from "@redwoodjs/web";
 import Chat from 'src/components/Chat/Chat'
 import { ChevronRightIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 
 import { CalendarIcon, CommandLineIcon, MegaphoneIcon } from '@heroicons/react/24/outline'
+import GoalBigThreeCell from 'src/components/GoalBigThreeCell';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+
 
 const DashboardPage = () => {
 
@@ -86,6 +89,8 @@ const DashboardPage = () => {
           <span aria-hidden="true"> &rarr;</span>
         </a>
       </div> */}
+
+      {/* <GoalBigThreeCell /> */}
     </div>
     </>
   );
