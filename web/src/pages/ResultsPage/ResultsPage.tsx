@@ -7,7 +7,7 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 import { Form, TextAreaField, InputField, Label, TextField, PasswordField, FieldError, Submit, ButtonField, HiddenField, } from '@redwoodjs/forms'
 
 import Chat from 'src/components/Chat/Chat'
-import { CheckIcon, ArrowRightIcon, ChatBubbleLeftRightIcon,  ChevronLeftIcon, ChevronRightIcon, HomeIcon} from '@heroicons/react/20/solid'
+import { CheckIcon, ArrowRightIcon, ChatBubbleLeftRightIcon,  ChevronLeftIcon, ChevronRightIcon, HomeIcon, InformationCircleIcon} from '@heroicons/react/20/solid'
 import Heading from 'src/components/Heading/Heading';
 import AiCell from 'src/components/AiCell'
 import { Dialog, Transition } from '@headlessui/react'
@@ -81,7 +81,19 @@ const ResultsPage = ({id}: Props) => {
       <>
         <Toaster />
         
-        {mutationLoading && toast('Whipping up your custom plan. Brace yourself for some goal-setting magic! Notification incoming when done!', { icon: '🚀', duration: 8000,})}
+        {mutationLoading && (
+            <div className="rounded-md bg-blue-50 p-4 mb-6">
+             <div className="flex">
+               <div className="flex-shrink-0">
+                 <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+               </div>
+               <div className="ml-3 flex-1 md:flex md:justify-between">
+                 <p className="text-sm text-blue-700">Whipping up your custom plan. Brace yourself for some goal-setting magic!</p>
+               </div>
+             </div>
+           </div> 
+          )
+        }
 
         <div className="display flex">
 

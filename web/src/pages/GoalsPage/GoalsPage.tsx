@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react';
 import { Link, routes } from "@redwoodjs/router";
 import { Form, FieldError, FormError, TextAreaField, InputField, Label, TextField, PasswordField, Submit, ButtonField, } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from "@redwoodjs/web";
-import { ChevronRightIcon, HomeIcon} from '@heroicons/react/20/solid'
+import { ChevronRightIcon, HomeIcon, InformationCircleIcon} from '@heroicons/react/20/solid'
 import GoalsCell from 'src/components/GoalsCell'
 import { Dialog, Transition } from '@headlessui/react'
 import AiCell from 'src/components/AiCell';
@@ -140,7 +140,21 @@ const GoalsPage = () => {
       
         <Toaster />
         
-        {loading && toast('Whipping up your custom plan. Brace yourself for some goal-setting magic! Notification incoming when done!',
+        {loading && (
+            <div className="rounded-md bg-blue-50 p-4 mb-6">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                </div>
+                <div className="ml-3 flex-1 md:flex md:justify-between">
+                  <p className="text-sm text-blue-700">Whipping up your custom plan. Brace yourself for some goal-setting magic!</p>
+                </div>
+              </div>
+            </div> 
+          )
+        }        
+        
+        toast('Whipping up your custom plan. Brace yourself for some goal-setting magic! Notification incoming when done!',
          { icon: '🚀', duration: 8000,})
         }
         
