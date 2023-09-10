@@ -46,13 +46,15 @@ const DashboardPage = () => {
     <>
       <MetaTags title="Dashboard" description="Dashboard Page" />
 
-      <h2 className="className text-2xl md:text-4xl font-bold text-center mb-4">Empower Your Path to Excellence</h2>
-      <p className="text-center text-gray-500 text-sm md:text-base">Platform that helps you achieve your goals and become the best version of yourself.</p>
+      
+      <div className="mx-auto max-w-6xl">
 
-      <div className="mx-auto max-w-lg">
+      <h2 className="className text-2xl md:text-4xl font-bold text-center mb-2">Empower Your Path to Excellence</h2>
+      <p className="text-center text-gray-500 text-sm md:text-base mb-6">Platform that helps you achieve your goals and become the best version of yourself.</p>
+
       {/* <h2 className="text-base font-semibold leading-6 text-gray-900">Create your first project</h2>
       <p className="mt-1 text-sm text-gray-500">Get started by selecting a template or start from an empty project.</p> */}
-      <ul role="list" className="mt-6 divide-y divide-gray-200 border-b border-t border-gray-200">
+      {/* <ul role="list" className="mt-6 divide-y divide-gray-200 border-b border-t border-gray-200">
         {items.map((item, itemIdx) => (
           <li key={itemIdx}>
             <div className="group relative flex items-start space-x-3 py-4">
@@ -68,12 +70,12 @@ const DashboardPage = () => {
                   <Link to={item.to}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {item.name}
-                  </Link>
+                  </Link> */}
                   {/* <a href={item.href}>
                     <span className="absolute inset-0" aria-hidden="true" />
                     {item.name}
                   </a> */}
-                </div>
+                {/* </div>
                 <p className="text-sm text-gray-500">{item.description}</p>
               </div>
               <div className="flex-shrink-0 self-center">
@@ -82,7 +84,7 @@ const DashboardPage = () => {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
       {/* <div className="mt-6 flex">
         <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
           Or start from an empty project
@@ -90,7 +92,7 @@ const DashboardPage = () => {
         </a>
       </div> */}
 
-      {/* <GoalBigThreeCell /> */}
+      <GoalBigThreeCell />
     </div>
     </>
   );
