@@ -61,7 +61,7 @@ export const Failure = ({
 
 export const Success = ({ goals }: CellSuccessProps<FindGoalBigThreeQuery, FindGoalBigThreeQueryVariables>) => {
   // const xxx = JSON.stringify(goals);
-  console.log(goals);
+  console.log(JSON.stringify(goals));
 
   // const { data: queryData, loading: queryLoading, error: queryError } = useQuery(GET_AI_BIG_THREE, { variables: { prompt: goals }});
   

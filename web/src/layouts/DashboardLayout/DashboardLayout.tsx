@@ -31,9 +31,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     // { name: 'Log out', to: logOut(), icon: ArrowLeftOnRectangleIcon, current: false, live: true},
   ]
   const teams = [
-    { id: 1, name: 'Sarah Smith', href: '#', initial: 'SS', current: false },
-    { id: 2, name: 'Alex Johnson', href: '#', initial: 'AJ', current: false },
-    { id: 3, name: 'Emily Brown', href: '#', initial: 'EB', current: false },
+    { id: 1, name: 'Malik Smith', href: '#', initial: 'MS', current: false },
+    { id: 2, name: 'Cassandra Johnson', href: '#', initial: 'CJ', current: false },
+    { id: 3, name: 'Richard Brown', href: '#', initial: 'RB', current: false },
   ]
 
   
