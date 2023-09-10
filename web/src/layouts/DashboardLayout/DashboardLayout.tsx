@@ -22,9 +22,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   const navigation = [
     { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon, current: true, live: true},
+    { name: 'Chat', to: "", icon: ChatBubbleLeftRightIcon, current: false, live: false},
     { name: 'Goals', to: routes.goals(), icon: PencilSquareIcon, current: false, live: true},
-    { name: 'Chat', to: routes.chat(), icon: ChatBubbleLeftRightIcon, current: false, live: false},
-    { name: 'Hot 3 Actions', to: "", icon: CalendarIcon, current: false, live: false},
+    { name: 'Focus Area', to: routes.focusArea(), icon: CalendarIcon, current: false, live: true},
     { name: 'Show Appreciation', to: "", icon: GiftIcon, current: false, live: false},
     { name: 'Settings', to: "", icon: Cog6ToothIcon, current: false, live: false},
     // { name: 'Log out', to: logOut(), icon: ArrowLeftOnRectangleIcon, current: false, live: true},

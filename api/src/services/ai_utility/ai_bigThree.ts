@@ -32,7 +32,10 @@ const parser = StructuredOutputParser.fromZodSchema(
                             .describe('this is a description of the action associated with a result and goal to achieve.'),
                         status: z
                             .string()
-                            .describe('this is current status of the action. Never choose "Complete". Always choose "NotStarted" or "InProgress".')
+                            .describe('this is current status of the action. Never choose "Complete". Always choose "NotStarted" or "InProgress".'),
+                        // note: z
+                        //     .string()
+                        //     .describe('this is a note associated with the action associated with a result and goal to achieve. Always change null to "" if there is no note.'),
                     })
                 ).describe('these are the actions associated with a result.')
             })
@@ -50,10 +53,10 @@ const getPrompt = async (promptValue: any) => {
     const prompt = new PromptTemplate({
         template:
         `You are an achievement coach who is a professional who helps others to set and achieve their goals, results, and actions. As my achievement coach, you know the 
-        following about me {prompt}. Please give me my next big three actions to accomplish from the list where the "status" is not "complete". Only show the most important 
-        two goals you, as an achievement coach, believe I should achieve across all my goals. Never choose any actions that have the "status" of "Complete." Always select 
-        actions with the "NotStarted" or "InProgress". Please limit your response no matter what you think I can do in the next seven days! Match the format instruction 
-        and format your response to match the JSON {format_instructions}, no matter what!`,
+        following about me {prompt}. Never choose and goal, result or action that have the "status" of "Complete." Always analyze actions with the "NotStarted" or 
+        "InProgress" from {prompt}. Please give me my next big three actions to accomplish from {prompt} where the "status" is absolutly not "complete". Only show the 
+        most important two goals you, as an achievement coach, believe I should achieve across all my goals. Please limit your response no matter what you think I can do in 
+        the next seven days! Match the format instruction and format your response to match the JSON {format_instructions}, no matter what!`,
         inputVariables: ['prompt'],
         partialVariables: { format_instructions },
     })

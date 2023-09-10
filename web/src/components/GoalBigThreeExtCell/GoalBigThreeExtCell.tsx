@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'
+import { EllipsisHorizontalIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
 
 import type {
   getAiBigThreeQuery,
@@ -47,7 +47,21 @@ export const QUERY = gql`
 `;
 
 
-export const Loading = () => <div>Loading...</div>;
+export const Loading = () => (
+  <>
+    <div className="rounded-md bg-blue-50 p-4">
+        <div className="flex">
+          <div className="flex-shrink-0">
+            <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+          </div>
+          <div className="ml-3 flex-1 md:flex md:justify-between">
+            <p className="text-sm text-blue-700">Analyzing and loading your focus points for the week.</p>
+          </div>
+        </div>
+      </div>
+  </>
+
+)
 
 export const Empty = () => <div>Empty</div>;
 

@@ -39,6 +39,7 @@ const Routes = () => {
           <Route path="/action-create" page={ActionCreatePage} name="actionCreate" />
 
           <Route path="/chat" page={ChatPage} name="chat" />
+          <Route path="/focus-area" page={FocusAreaPage} name="focusArea" />
           <Route path="/contact-us" page={ContactUsPage} name="contactUs" />
         </Set>
       </Private>
