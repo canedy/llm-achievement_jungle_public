@@ -7,7 +7,7 @@ type DashboardLayoutProps = {
 
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { Bars3Icon, CalendarIcon, HomeIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, XMarkIcon, PencilSquareIcon, ArrowLeftOnRectangleIcon, GiftIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, CalendarIcon, HomeIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, XMarkIcon, PencilSquareIcon, ArrowLeftOnRectangleIcon, GiftIcon, BuildingLibraryIcon } from '@heroicons/react/24/outline'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 
 
@@ -22,9 +22,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
   const navigation = [
     { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon, current: true, live: true},
-    { name: 'Chat', to: "", icon: ChatBubbleLeftRightIcon, current: false, live: false},
     { name: 'Goals', to: routes.goals(), icon: PencilSquareIcon, current: false, live: true},
     { name: 'Focus Area', to: routes.focusArea(), icon: CalendarIcon, current: false, live: true},
+    { name: 'Development', to: "", icon: BuildingLibraryIcon, current: false, live: false},
+    { name: 'Chat', to: "", icon: ChatBubbleLeftRightIcon, current: false, live: false},
     { name: 'Show Appreciation', to: "", icon: GiftIcon, current: false, live: false},
     { name: 'Settings', to: "", icon: Cog6ToothIcon, current: false, live: false},
     // { name: 'Log out', to: logOut(), icon: ArrowLeftOnRectangleIcon, current: false, live: true},
