@@ -154,10 +154,6 @@ const GoalsPage = () => {
           )
         }        
         
-        toast('Whipping up your custom plan. Brace yourself for some goal-setting magic! Notification incoming when done!',
-         { icon: '🚀', duration: 8000,})
-        }
-        
         <nav className="flex pb-8" aria-label="Breadcrumb">
           <ol role="list" className="flex items-center space-x-4">
             <li>
